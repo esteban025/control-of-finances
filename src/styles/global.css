@@ -1,0 +1,15 @@
+@import "tailwindcss";
+/* Supports weights 400-900 */
+@import '@fontsource-variable/playfair-display';
+
+/* Supports weights 100-900 */
+@import '@fontsource-variable/inter-tight';
+
+@theme {
+  --font-playfair: 'Playfair Display Variable', serif;
+  --font-inter: 'Inter Tight Variable', sans-serif;
+
+  --color-primary: #0D1117;
+  --color-secondary: #010409;
+  --color-tertiary: #1F6FEB;
+}
