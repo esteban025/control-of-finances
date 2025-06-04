@@ -1,5 +1,16 @@
+---
+interface Props {
+  inHome?: boolean;
+}
+const { inHome = false } = Astro.props;
+const padding = inHome ? "p-8" : "p-2";
+---
+
 <article
-  class="bg-primary border border-border-gray rounded-lg p-2 shadow-lg shadow-black"
+  class:list={[
+    "bg-primary border border-border-gray rounded-lg shadow-lg shadow-black/50",
+    padding,
+  ]}
 >
   <slot />
 </article>

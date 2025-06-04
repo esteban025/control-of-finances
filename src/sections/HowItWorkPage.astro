@@ -1,0 +1,48 @@
+---
+import SetItem from "@/components/ui/SetItem.astro";
+
+const sets = [
+  {
+    numero: 1,
+    title: "Inicia sesión con Google",
+    subtitle: "Acceso rápido y seguro",
+    description:
+      "Ingresa fácilmente utilizando tu cuenta de Google. Tus datos estarán siempre protegidos y nunca solicitamos información bancaria.",
+  },
+  {
+    numero: 2,
+    title: "Registra tus movimientos",
+    subtitle: "Gastos e ingresos",
+    description:
+      "Añade tus gastos e ingresos en la plantilla digital. Organiza cada movimiento por categoría y mantén el control de tu economía personal.",
+  },
+  {
+    numero: 3,
+    title: "Consulta tus reportes",
+    subtitle: "Resumen y análisis",
+    description:
+      "Visualiza gráficos y resúmenes claros de tus finanzas. Identifica patrones y toma mejores decisiones para tu futuro económico.",
+  },
+];
+---
+
+<section
+  id="como-funciona"
+  class="py-16 bg-gradient-to-b from-secondary to-transparent to-25%"
+>
+  <div class="flex flex-col items-center px-8 gap-16 w-full max-w-4xl mx-auto">
+    <h2 class="text-4xl font-playfair text-balance">¿Cómo funciona?</h2>
+    <ol class="relative">
+      {
+        sets.map((set) => (
+          <SetItem
+            title={set.title}
+            subtitle={set.subtitle}
+            description={set.description}
+            number={set.numero}
+          />
+        ))
+      }
+    </ol>
+  </div>
+</section>

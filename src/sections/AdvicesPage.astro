@@ -1,0 +1,115 @@
+---
+import UIBottom from "@/components/buttons/UIBottom.astro";
+import Card from "@/components/ui/Card.astro";
+---
+
+<section
+  id="consejos"
+  class="py-16 bg-gradient-to-b from-primary via-secondary to-primary"
+>
+  <div class="max-w-4xl mx-auto px-4">
+    <h2 class="text-4xl font-semibold text-center mb-16 font-playfair">
+      Consejos para tu Salud Financiera
+    </h2>
+    <p class="text-center text-lg text-gray-200 mb-8">
+      Controlar nuestras finanzas personales es la base para lograr estabilidad,
+      tranquilidad y libertad a largo plazo. Saber a dónde va tu dinero te
+      permite tomar mejores decisiones, invertir en tu futuro y evitar
+      preocupaciones innecesarias. <span
+        class="text-secondary-pro font-semibold"
+        >¡Recuerda que cada peso cuenta!</span
+      >
+    </p>
+
+    <div class="mb-16">
+      <Card inHome={true}>
+        <ul class="space-y-6">
+          <li class="flex items-start">
+            <span class="text-2xl mr-4 text-emerald-400">✔</span>
+            <div>
+              <span class="text-lg font-semibold text-white"
+                >Registra todos tus gastos.</span
+              >
+              <p class="text-gray-300">
+                Llevar un registro detallado te ayuda a identificar fugas de
+                dinero y ajustar tus hábitos.
+              </p>
+            </div>
+          </li>
+          <li class="flex items-start">
+            <span class="text-2xl mr-4 text-emerald-400">✔</span>
+            <div>
+              <span class="text-lg font-semibold text-white"
+                >Define metas de ahorro reales.</span
+              >
+              <p class="text-gray-300">
+                Tener objetivos claros te motiva a ser constante y a planificar
+                a largo plazo.
+              </p>
+            </div>
+          </li>
+          <li class="flex items-start">
+            <span class="text-2xl mr-4 text-emerald-400">✔</span>
+            <div>
+              <span class="text-lg font-semibold text-white"
+                >Revisa tus finanzas cada semana.</span
+              >
+              <p class="text-gray-300">
+                Un seguimiento frecuente te permite corregir el rumbo a tiempo y
+                evitar sorpresas.
+              </p>
+            </div>
+          </li>
+          <li class="flex items-start">
+            <span class="text-2xl mr-4 text-emerald-400">✔</span>
+            <div>
+              <span class="text-lg font-semibold text-white"
+                >Evita deudas innecesarias.</span
+              >
+              <p class="text-gray-300">
+                Utiliza el crédito de forma responsable y solo para inversiones
+                que generen valor.
+              </p>
+            </div>
+          </li>
+          <li class="flex items-start">
+            <span class="text-2xl mr-4 text-emerald-400">✔</span>
+            <div>
+              <span class="text-lg font-semibold text-white"
+                >Invierte en tu educación financiera.</span
+              >
+              <p class="text-gray-300">
+                Aprender sobre finanzas es la mejor inversión: te dará
+                herramientas para crecer personalmente y profesionalmente.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </Card>
+    </div>
+
+    <blockquote
+      class="border-l-4 border-emerald-400 pl-6 italic text-gray-100 mb-10 text-lg"
+    >
+      “No ahorres lo que queda después de gastar, gasta lo que queda después de
+      ahorrar.”<br />
+      <span class="block text-emerald-300 font-semibold">– Warren Buffett</span>
+    </blockquote>
+    <blockquote
+      class="border-l-4 border-amber-400 pl-6 italic text-gray-100 mb-8 text-lg"
+    >
+      “La disciplina financiera es la clave para crear riqueza.”<br />
+      <span class="block text-amber-300 font-semibold">– Robert Kiyosaki</span>
+    </blockquote>
+
+    <div class="mt-12 flex flex-col items-center justify-center">
+      <h3 class="text-2xl font-bold text-white mb-4 text-center">
+        ¿Listo para tomar el control de tus finanzas?
+      </h3>
+      <p class="text-gray-300 mb-6 text-center">
+        Empieza hoy mismo y da el primer paso hacia tu libertad financiera.
+      </p>
+      <UIBottom text="Iniciar sesión con Google" href="/login" />
+    </div>
+  </div>
+</section>

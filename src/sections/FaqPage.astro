@@ -1,0 +1,76 @@
+---
+import Card from "@/components/ui/Card.astro";
+---
+
+<section id="faq" class="py-20 bg-primary">
+  <div class="max-w-3xl mx-auto px-4">
+    <h2 class="text-4xl font-semibold text-center mb-16 font-playfair">
+      Preguntas frecuentes
+    </h2>
+    <div class="flex flex-col gap-6">
+      <!-- Pregunta 1 -->
+      <Card inHome>
+        <h3 class="text-lg font-semibold flex items-center mb-2">
+          <span class="mr-2 text-2xl">❓</span>
+          ¿Debo ingresar mis datos bancarios o tarjetas de crédito?
+        </h3>
+        <p class="text-gray-300 ml-7">
+          No. <span class="text-cyan-200 font-semibold"
+            >Jamás te pediremos información bancaria ni datos sensibles.</span
+          > Solo necesitas tu cuenta de Google para acceder y toda la información
+          que registres es manejada con total privacidad.
+        </p>
+      </Card>
+      <!-- Pregunta 2 -->
+      <Card inHome>
+        <h3 class="text-lg font-semibold flex items-center mb-2">
+          <span class="mr-2 text-2xl">❓</span>
+          ¿Tiene algún costo usar Control de Finanzas?
+        </h3>
+        <p class="text-gray-300 ml-7">
+          No, la plataforma es <span class="text-cyan-200 font-semibold"
+            >completamente gratuita</span
+          >. Puedes registrar, consultar y analizar tus finanzas sin ningún
+          cargo oculto.
+        </p>
+      </Card>
+      <!-- Pregunta 3 -->
+      <Card inHome>
+        <h3 class="text-lg font-semibold flex items-center mb-2">
+          <span class="mr-2 text-2xl">❓</span>
+          ¿Puedo acceder desde mi celular o tablet?
+        </h3>
+        <p class="text-gray-300 ml-7">
+          ¡Por supuesto! <span class="text-cyan-200 font-semibold"
+            >Control de Finanzas</span
+          > funciona perfectamente en computadoras, tablets y teléfonos, adaptándose
+          a cualquier pantalla.
+        </p>
+      </Card>
+      <!-- Pregunta 4 -->
+      <Card inHome>
+        <h3 class="text-lg font-semibold flex items-center mb-2">
+          <span class="mr-2 text-2xl">❓</span>
+          ¿Qué tan segura es mi información?
+        </h3>
+        <p class="text-gray-300 ml-7">
+          Utilizamos autenticación segura con Google y <span
+            class="text-cyan-200 font-semibold"
+            >no almacenamos información sensible</span
+          >. Tu privacidad y seguridad son nuestra prioridad.
+        </p>
+      </Card>
+      <!-- Pregunta 5 (extra) -->
+      <Card inHome>
+        <h3 class="text-lg font-semibold flex items-center mb-2">
+          <span class="mr-2 text-2xl">❓</span>
+          ¿Puedo descargar mis reportes financieros?
+        </h3>
+        <p class="text-gray-300 ml-7">
+          Sí. Puedes exportar tus datos y reportes en formatos accesibles para
+          llevar un respaldo o analizarlos fuera de la plataforma.
+        </p>
+      </Card>
+    </div>
+  </div>
+</section>
