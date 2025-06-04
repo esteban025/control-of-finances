@@ -21,7 +21,7 @@ Una aplicación web construida con [Astro](https://astro.build/) que permite a l
 
 1. Clona el repositorio:
    ```bash
-   git clone https://github.com/tu-usuario/finanzas-personales-app.git
+   git clone https://github.com/esteban025/control-of-finances.git
    cd finanzas-personales-app
    ```
 
