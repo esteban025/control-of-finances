@@ -2,10 +2,8 @@
 import UIBottom from "@/components/buttons/UIBottom.astro";
 ---
 
-<header class="bg-secondary">
-  <div
-    class="w-full max-w-7xl mx-auto px-4 py-5 flex justify-between items-center"
-  >
+<header class="bg-secondary sticky top-0 z-20 animate-header p-4">
+  <div class="w-full max-w-7xl mx-auto flex justify-between items-center">
     <a href="/" class="w-30 block">
       <img src="/logo.webp" alt="Logo de Control de finanzas" class="w-full" />
     </a>
@@ -20,3 +18,27 @@ import UIBottom from "@/components/buttons/UIBottom.astro";
     <UIBottom text="Iniciar sesión" href="/login" />
   </div>
 </header>
+
+<style>
+  .animate-header {
+    /* transition: all 2s; */
+    animation: scrollDown 2s linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 200px;
+  }
+
+  @keyframes scrollDown {
+    0% {
+      scale: 1;
+      border-radius: 0px;
+      background-color: #010409;
+      backdrop-filter: blur(0px);
+    }
+    100% {
+      scale: 0.9;
+      border-radius: 37px;
+      background-color: #010409da;
+      backdrop-filter: blur(20px);
+    }
+  }
+</style>
