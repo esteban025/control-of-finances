@@ -1,108 +1,119 @@
 ---
 import UIBottom from "@/components/buttons/UIBottom.astro";
 import Card from "@/components/ui/Card.astro";
+import Titles from "@/components/ui/Titles.astro";
+
+const advices = [
+  {
+    icon: "✔",
+    title: "Registra todos tus gastos.",
+    description:
+      "Llevar un registro detallado te ayuda a identificar fugas de dinero y ajustar tus hábitos.",
+  },
+  {
+    icon: "✔",
+    title: "Define metas de ahorro reales.",
+    description:
+      "Tener objetivos claros te motiva a ser constante y a planificar a largo plazo.",
+  },
+  {
+    icon: "✔",
+    title: "Revisa tus finanzas cada semana.",
+    description:
+      "Un seguimiento frecuente te permite corregir el rumbo a tiempo y evitar sorpresas.",
+  },
+  {
+    icon: "✔",
+    title: "Evita deudas innecesarias.",
+    description:
+      "Utiliza el crédito de forma responsable y solo para inversiones que generen valor.",
+  },
+  {
+    icon: "✔",
+    title: "Invierte en tu educación financiera.",
+    description:
+      "Aprender sobre finanzas es la mejor inversión: te dará herramientas para crecer personalmente y profesionalmente.",
+  },
+];
+
+function getColors(color: string) {
+  const borderColor = `border-${color}-400`;
+  const textColor = `text-${color}-300`;
+  return { borderColor, textColor };
+}
+const famousQuotes = [
+  {
+    quote:
+      "No ahorres lo que queda después de gastar, gasta lo que queda después de ahorrar.",
+    author: "Warren Buffett",
+    color: "emerald",
+  },
+  {
+    quote: "La disciplina financiera es la clave para crear riqueza.",
+    author: "Robert Kiyosaki",
+    color: "amber",
+  },
+];
 ---
 
 <section
-  id="consejos"
-  class="py-16 bg-gradient-to-b from-primary via-secondary to-primary"
+  id="advices"
+  class="bg-gradient-to-b from-primary via-secondary to-primary pb-20"
 >
-  <div class="max-w-4xl mx-auto px-4">
-    <h2 class="text-4xl font-semibold text-center mb-16 font-playfair">
-      Consejos para tu Salud Financiera
-    </h2>
-    <p class="text-center text-lg text-gray-200 mb-8">
+  <div class="max-w-5xl mx-auto w-11/12 flex flex-col items-center gap-10">
+    <Titles text="Consejos para tu Salud Financiera" subtitle />
+    <p class="text-center text-gray-200 text-balance">
       Controlar nuestras finanzas personales es la base para lograr estabilidad,
       tranquilidad y libertad a largo plazo. Saber a dónde va tu dinero te
       permite tomar mejores decisiones, invertir en tu futuro y evitar
-      preocupaciones innecesarias. <span
+      preocupaciones innecesarias. <strong
         class="text-secondary-pro font-semibold"
-        >¡Recuerda que cada peso cuenta!</span
+        >¡Recuerda que cada peso cuenta!</strong
       >
     </p>
 
-    <div class="mb-16">
+    <div class="">
       <Card inHome={true}>
-        <ul class="space-y-6">
-          <li class="flex items-start">
-            <span class="text-2xl mr-4 text-emerald-400">✔</span>
-            <div>
-              <span class="text-lg font-semibold text-white"
-                >Registra todos tus gastos.</span
-              >
-              <p class="text-gray-300">
-                Llevar un registro detallado te ayuda a identificar fugas de
-                dinero y ajustar tus hábitos.
-              </p>
-            </div>
-          </li>
-          <li class="flex items-start">
-            <span class="text-2xl mr-4 text-emerald-400">✔</span>
-            <div>
-              <span class="text-lg font-semibold text-white"
-                >Define metas de ahorro reales.</span
-              >
-              <p class="text-gray-300">
-                Tener objetivos claros te motiva a ser constante y a planificar
-                a largo plazo.
-              </p>
-            </div>
-          </li>
-          <li class="flex items-start">
-            <span class="text-2xl mr-4 text-emerald-400">✔</span>
-            <div>
-              <span class="text-lg font-semibold text-white"
-                >Revisa tus finanzas cada semana.</span
-              >
-              <p class="text-gray-300">
-                Un seguimiento frecuente te permite corregir el rumbo a tiempo y
-                evitar sorpresas.
-              </p>
-            </div>
-          </li>
-          <li class="flex items-start">
-            <span class="text-2xl mr-4 text-emerald-400">✔</span>
-            <div>
-              <span class="text-lg font-semibold text-white"
-                >Evita deudas innecesarias.</span
-              >
-              <p class="text-gray-300">
-                Utiliza el crédito de forma responsable y solo para inversiones
-                que generen valor.
-              </p>
-            </div>
-          </li>
-          <li class="flex items-start">
-            <span class="text-2xl mr-4 text-emerald-400">✔</span>
-            <div>
-              <span class="text-lg font-semibold text-white"
-                >Invierte en tu educación financiera.</span
-              >
-              <p class="text-gray-300">
-                Aprender sobre finanzas es la mejor inversión: te dará
-                herramientas para crecer personalmente y profesionalmente.
-              </p>
-            </div>
-          </li>
+        <ul class="space-y-6 w-full max-w-2xl">
+          {
+            advices.map((advice) => (
+              <li class="flex items-start">
+                <span class="text-2xl mr-4 text-emerald-400">
+                  {advice.icon}
+                </span>
+                <div>
+                  <span class="font-semibold text-white">{advice.title}</span>
+                  <p class="text-gray-300">{advice.description}</p>
+                </div>
+              </li>
+            ))
+          }
         </ul>
       </Card>
     </div>
 
-    <blockquote
-      class="border-l-4 border-emerald-400 pl-6 italic text-gray-100 mb-10 text-lg"
-    >
-      “No ahorres lo que queda después de gastar, gasta lo que queda después de
-      ahorrar.”<br />
-      <span class="block text-emerald-300 font-semibold">– Warren Buffett</span>
-    </blockquote>
-    <blockquote
-      class="border-l-4 border-amber-400 pl-6 italic text-gray-100 mb-8 text-lg"
-    >
-      “La disciplina financiera es la clave para crear riqueza.”<br />
-      <span class="block text-amber-300 font-semibold">– Robert Kiyosaki</span>
-    </blockquote>
+    <article class="space-y-6">
+      {
+        famousQuotes.map(({ quote, author, color }) => (
+          <blockquote
+            class:list={[
+              "border-l-4 pl-6 italic text-gray-100",
+              getColors(color).borderColor,
+            ]}
+          >
+            "{quote}"
+            <br />
+            <span
+              class:list={["block font-semibold", getColors(color).textColor]}
+            >
+              – {author}
+            </span>
+          </blockquote>
+        ))
+      }
+    </article>
 
-    <div class="mt-12 flex flex-col items-center justify-center">
+    <div class="flex flex-col items-center justify-center">
       <h3 class="text-2xl font-bold text-white mb-4 text-center">
         ¿Listo para tomar el control de tus finanzas?
       </h3>

@@ -1,0 +1,31 @@
+---
+interface Props {
+  text: string;
+  subtitle?: boolean;
+}
+const { subtitle = false, text }: Props = Astro.props;
+---
+
+{
+  subtitle ? (
+    <h2 class="font-semibold text-center font-playfair text-balance subtitle">
+      {text}
+    </h2>
+  ) : (
+    <h1 class="font-playfair text-balance principal-title text-6xl">{text}</h1>
+  )
+}
+
+<style>
+  .principal-title {
+    transition: font-size 0.3s ease-in-out;
+    font-size: clamp(2.5rem, 4vw, 3.75rem);
+    line-height: 1.1;
+  }
+
+  .subtitle {
+    transition: font-size 0.3s ease-in-out;
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    line-height: 1.1;
+  }
+</style>
