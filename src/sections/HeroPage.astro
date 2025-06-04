@@ -1,0 +1,33 @@
+---
+import UIBottom from "@/components/buttons/UIBottom.astro";
+---
+
+<section class="flex items-center justify-center" id="hero">
+  <div class="flex-1 flex flex-col justify-center gap-6 pl-20">
+    <h1 class="text-5xl font-playfair text-balance">
+      Bienvenido a Control de finanzas
+    </h1>
+    <p class="text-lg text-balance">
+      Gestiona tus finanzas personales de forma sencilla, segura y privada.
+    </p>
+    <div class="buttons">
+      <UIBottom text="Comenzar" href="/login" />
+    </div>
+  </div>
+  <figure class="flex-1">
+    <img
+      src="/hero.webp"
+      alt="Imagen hero de la página principal"
+      class="hero-image"
+    />
+  </figure>
+</section>
+
+<style>
+  .hero-image {
+    width: 100%;
+    height: auto;
+    max-width: 800px;
+    filter: drop-shadow(0 10px 10px var(--color-secondary));
+  }
+</style>

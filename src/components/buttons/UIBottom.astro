@@ -1,0 +1,48 @@
+---
+interface Props {
+  text: string;
+  href: string;
+}
+const { text, href } = Astro.props;
+---
+
+<a
+  href={href}
+  class="relative bg-white/20 py-3 px-4 rounded-lg btn-a overflow-hidden block w-max group"
+>
+  <span class="opacity-0">{text}</span>
+  <span
+    class="absolute inset-[2px] rounded-md bg-tertiary flex items-center justify-center z-10 group-hover:bg-secondary-pro transition-colors duration-300 font-medium"
+    >{text}</span
+  >
+</a>
+
+<style>
+  a::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20%;
+    height: 200px;
+    background: linear-gradient(0deg, #fff, transparent, #fff);
+    z-index: -5;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all 2500ms linear;
+  }
+  a:hover::before {
+    animation: rotate-in 2500ms linear infinite both;
+  }
+
+  @keyframes rotate-in {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+</style>
