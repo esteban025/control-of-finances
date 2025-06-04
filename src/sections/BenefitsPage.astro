@@ -1,26 +1,56 @@
-<section id="beneficios">
-  <h2>¿Por qué usar Control de Finanzas?</h2>
-  <ul>
-    <li>
-      <!-- Icono -->
-      <span>📊</span>
-      <h3>Reportes visuales</h3>
-      <p>Visualiza tus gastos y analiza tus hábitos financieros fácilmente.</p>
-    </li>
-    <li>
-      <span>🔒</span>
-      <h3>Privacidad total</h3>
-      <p>No solicitamos información bancaria ni de tarjetas de crédito.</p>
-    </li>
-    <li>
-      <span>⚡</span>
-      <h3>Fácil de usar</h3>
-      <p>Interfaz simple y rápida para registrar tus gastos.</p>
-    </li>
-    <li>
-      <span>🔑</span>
-      <h3>Acceso seguro</h3>
-      <p>Inicia sesión fácilmente con tu cuenta de Google.</p>
-    </li>
-  </ul>
+---
+import Card from "@/components/ui/Card.astro";
+
+const benefits = [
+  {
+    image: "/icons/grafics.webp",
+    title: "Reportes visuales",
+    description:
+      "Visualiza tus gastos y analiza tus hábitos financieros fácilmente.",
+  },
+  {
+    image: "/icons/segurity.webp",
+    title: "Privacidad total",
+    description:
+      "No solicitamos información bancaria ni de tarjetas de crédito.",
+  },
+  {
+    image: "/icons/easy.webp",
+    title: "Fácil de usar",
+    description: "Interfaz simple y rápida para registrar tus gastos.",
+  },
+  {
+    image: "/icons/access.webp",
+    title: "Acceso seguro",
+    description: "Inicia sesión fácilmente con tu cuenta de Google.",
+  },
+];
+---
+
+<!-- Sección Beneficios estilizada con Tailwind CSS -->
+<section id="beneficios" class="bg-secondary w-full py-10">
+  <div class="px-8 flex flex-col gap-10 items-center">
+    <h2 class="text-4xl font-playfair text-balance">
+      ¿Por qué usar Control de Finanzas?
+    </h2>
+    <div
+      class="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-8 w-full"
+    >
+      {
+        benefits.map((benefit) => (
+          <Card>
+            <div class="flex flex-col items-center text-center gap-2 py-4">
+              <img
+                src={benefit.image}
+                alt={`Icono de ${benefit.title}`}
+                class="w-16 h-16"
+              />
+              <h3 class="text-xl font-semibold">{benefit.title}</h3>
+              <p class="text-gray-400 text-lg">{benefit.description}</p>
+            </div>
+          </Card>
+        ))
+      }
+    </div>
+  </div>
 </section>
