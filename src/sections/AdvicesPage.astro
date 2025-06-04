@@ -35,23 +35,17 @@ const advices = [
       "Aprender sobre finanzas es la mejor inversión: te dará herramientas para crecer personalmente y profesionalmente.",
   },
 ];
-
-function getColors(color: string) {
-  const borderColor = `border-${color}-400`;
-  const textColor = `text-${color}-300`;
-  return { borderColor, textColor };
-}
 const famousQuotes = [
   {
     quote:
       "No ahorres lo que queda después de gastar, gasta lo que queda después de ahorrar.",
     author: "Warren Buffett",
-    color: "emerald",
+    colors: "border-emerald-400 text-emerald-300",
   },
   {
     quote: "La disciplina financiera es la clave para crear riqueza.",
     author: "Robert Kiyosaki",
-    color: "amber",
+    colors: "border-amber-400 text-amber-300",
   },
 ];
 ---
@@ -94,20 +88,13 @@ const famousQuotes = [
 
     <article class="space-y-6">
       {
-        famousQuotes.map(({ quote, author, color }) => (
+        famousQuotes.map(({ quote, author, colors }) => (
           <blockquote
-            class:list={[
-              "border-l-4 pl-6 italic text-gray-100",
-              getColors(color).borderColor,
-            ]}
+            class:list={["border-l-4 pl-6 italic text-gray-100", colors]}
           >
             "{quote}"
             <br />
-            <span
-              class:list={["block font-semibold", getColors(color).textColor]}
-            >
-              – {author}
-            </span>
+            <span class:list={["block font-semibold", colors]}>– {author}</span>
           </blockquote>
         ))
       }
