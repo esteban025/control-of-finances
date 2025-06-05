@@ -2,18 +2,25 @@
 interface Props {
   text: string;
   href: string;
+  big?: boolean;
 }
-const { text, href } = Astro.props;
+const { text, href, big = false } = Astro.props;
+const sizeText = big ? "text-lg" : "text-sm";
 ---
 
 <a
   href={href}
-  class="relative bg-white/20 py-3 px-4 rounded-full btn-a overflow-hidden block w-max group hover:scale-95 transition-all duration-300 text-sm"
+  class:list={[
+    "relative bg-white/20 py-3 px-4 rounded-full btn-a overflow-hidden block w-max group hover:scale-95 transition-all duration-300",
+    sizeText,
+  ]}
 >
   <span class="opacity-0">{text}</span>
   <span
-    class="absolute inset-[2px] rounded-full bg-tertiary flex items-center justify-center z-10 transition-colors duration-300 font-medium text-sm"
-    >{text}</span
+    class:list={[
+      "absolute inset-[2px] rounded-full bg-tertiary flex items-center justify-center z-10 transition-colors duration-300 font-medium",
+      sizeText,
+    ]}>{text}</span
   >
 </a>
 
@@ -24,7 +31,7 @@ const { text, href } = Astro.props;
     top: 50%;
     left: 50%;
     width: 20%;
-    height: 200px;
+    height: 300px;
     background: linear-gradient(
       0deg,
       var(--color-secondary-pro),
