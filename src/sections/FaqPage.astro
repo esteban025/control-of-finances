@@ -42,12 +42,12 @@ const faqs = [
     <div class="space-y-4">
       {
         faqs.map(({ icon, question, answer }) => (
-          <button class="cursor-pointer w-full btn-faq bg-primary border border-border-gray rounded-lg shadow-lg shadow-black/50 p-2 h-full">
-            <h3 class="font-semibold space-x-2 w-max">
-              <span class="text-xl ">{icon}</span>
+          <button class="cursor-pointer w-full btn-faq bg-primary border border-border-gray rounded-lg shadow-lg shadow-black/50 p-2 h-full flex flex-col gap-2">
+            <h3 class="font-semibold space-x-2 truncate text-start">
+              <span>{icon}</span>
               <span>{question}</span>
             </h3>
-            <p class="text-gray-300 w-full text-start">{answer}</p>
+            <p class="text-gray-300 text-start">{answer}</p>
           </button>
         ))
       }
@@ -74,7 +74,7 @@ const faqs = [
     height: auto;
   }
   .btn-faq.open h3 {
-    color: var(--color-cyan-300);
+    color: var(--color-cyan-200);
   }
 </style>
 
