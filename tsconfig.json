@@ -1,22 +1,44 @@
 {
   "extends": "astro/tsconfigs/strict",
-  "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"],
+  "include": [
+    ".astro/types.d.ts",
+    "**/*"
+  ],
+  "exclude": [
+    "dist"
+  ],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@components/*": ["./src/components/*"],
-      "@assets/*": ["./src/assets/*"],
-      "@layouts/*": ["./src/layouts/*"],
-      "@pages/*": ["./src/pages/*"],
-      "@data/*": ["./src/data/*"],
-      "@styles/*": ["./src/styles/*"],
-      "@sections/*": ["./src/sections/*"],
-      "@utils/*": ["./src/utils/*"],
-    }
+      "@/*": [
+        "./src/*"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@assets/*": [
+        "./src/assets/*"
+      ],
+      "@layouts/*": [
+        "./src/layouts/*"
+      ],
+      "@pages/*": [
+        "./src/pages/*"
+      ],
+      "@data/*": [
+        "./src/data/*"
+      ],
+      "@styles/*": [
+        "./src/styles/*"
+      ],
+      "@sections/*": [
+        "./src/sections/*"
+      ],
+      "@utils/*": [
+        "./src/utils/*"
+      ]
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
   }
-  // corregimos el @theme{}
-  
-
 }
