@@ -10,23 +10,27 @@ const { title, subtitle, description, number }: Props = Astro.props;
 
 <li class="">
   <div
-    class="relative mx-12 pb-8 grid before:absolute before:left-[-35px] before:block before:h-full before:border-l-2 before:border-light-border before:content-[''] md:grid-cols-5 md:gap-7 md:space-x-4"
+    class="relative mx-12 pb-8 grid before:absolute before:left-[-35px] before:block before:h-full before:border-l-2 before:border-light-border before:content-[''] md:grid-cols-5 md:gap-7 md:space-x-4 dark:before:border-dark-border"
   >
     <div class="relative pb-5 md:col-span-2">
       <div class="sticky top-0">
         <span
-          class="-left-[50px] absolute text-xl rounded-full size-8 grid place-content-center font-bold bg-light-bg border-2 border-tertiary text-tertiary"
+          class="-left-[50px] absolute text-xl rounded-full size-8 grid place-content-center font-bold bg-light-bg dark:bg-dark-bg border-2 border-tertiary dark:border-dark-primary text-tertiary dark:text-dark-primary"
           >{number}</span
         >
-        <h3 class="text-xl font-semibold text-tertiary pb-1">{title}</h3>
+        <h3
+          class="text-xl font-semibold text-tertiary pb-1 dark:text-dark-primary"
+        >
+          {title}
+        </h3>
 
-        <p class="p-0 m-0 text-sm">
+        <p class="p-0 m-0 text-sm dark:text-light-bg/80">
           {subtitle}
         </p>
       </div>
     </div>
     <div
-      class="relative flex flex-col gap-2 pb-4 text-light-paragraph md:col-span-3"
+      class="relative flex flex-col gap-2 pb-4 text-light-paragraph dark:text-dark-paragraph md:col-span-3"
     >
       {description}
     </div>

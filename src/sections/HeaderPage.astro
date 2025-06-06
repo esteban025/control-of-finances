@@ -6,13 +6,13 @@ import navItems from "@/data/nav";
 ---
 
 <header
-  class="bg-light-secondary sticky top-0 z-10 animate-header p-4 border-b border-light-border"
+  class="bg-light-secondary sticky top-0 z-10 animate-header p-4 border-b border-light-border dark:bg-dark-secondary dark:border-dark-border"
 >
   <div class="w-full max-w-6xl mx-auto flex justify-between items-center">
     <a href="/" class="w-30 block">
       <img src="/logo.webp" alt="Logo de Control de finanzas" class="w-full" />
     </a>
-    <nav class="hidden md:block text-light-paragraph">
+    <nav class="hidden md:block text-light-paragraph dark:text-dark-paragraph">
       <ul class="flex items-center gap-4">
         {
           navItems.map(({ name, href }) => (

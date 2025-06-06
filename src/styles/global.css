@@ -12,13 +12,21 @@
 @theme {
   --font-playfair: 'Playfair Display Variable', serif;
   --font-inter: 'Inter Tight Variable', sans-serif;
+  /* --color-dark-secondary-pro: #22C3BB; */
 
-  --color-primary: #0D1117;
-  --color-secondary-pro: #22C3BB;
-  --color-secondary: #010409;
+  /* dark */
+  --color-dark-bg: #0D1117;
+  --color-dark-text: #F0F6FC;
+  --color-dark-paragraph: #9198A1;
+  --color-dark-primary: #50ADF6;
+  --color-dark-secondary: #010409;
+  --color-dark-card-bg: #151B23;
+  --color-dark-border: #3D444D;
+  --color-border-l: #1F6FEB;
+
+  /* all themes */
   --color-tertiary: #1F6FEB;
-  --color-border-gray: #3D444D;
-
+  
   /* light */
   --color-light-bg: #ffffff;
   --color-light-text: #1f2328;

@@ -7,7 +7,7 @@ const { question, answer }: Props = Astro.props;
 ---
 
 <button
-  class="cursor-pointer w-full btn-faq border border-light-border rounded-lg shadow-lg shadow-light-paragraph/10 p-2 h-full flex flex-col gap-2"
+  class="cursor-pointer w-full btn-faq border border-light-border dark:border-dark-border rounded-lg shadow-lg shadow-light-paragraph/10 dark:shadow-dark-secondary/50 p-2 h-full flex flex-col gap-2"
 >
   <h3 class="font-semibold flex items-center gap-2 w-full truncate">
     <div class="icon w-4 h-4 relative">
@@ -16,7 +16,9 @@ const { question, answer }: Props = Astro.props;
     </div>
     <span>{question}</span>
   </h3>
-  <p class="text-light-paragraph text-start pl-10">{answer}</p>
+  <p class="text-light-paragraph dark:text-dark-paragraph text-start pl-10">
+    {answer}
+  </p>
 </button>
 
 <style>
@@ -61,6 +63,13 @@ const { question, answer }: Props = Astro.props;
   .vertical {
     width: 2px;
     height: 100%;
+  }
+
+  html.dark .btn-faq.open h3 {
+    color: var(--color-dark-primary);
+  }
+  html.dark .btn-faq.open .line {
+    background-color: var(--color-dark-primary);
   }
 </style>
 
