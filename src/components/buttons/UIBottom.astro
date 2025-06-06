@@ -11,14 +11,14 @@ const sizeText = big ? "text-lg" : "text-sm";
 <a
   href={href}
   class:list={[
-    "relative bg-white/20 py-3 px-4 rounded-full btn-a overflow-hidden block w-max group hover:scale-95 transition-all duration-300",
+    "relative bg-white/20 py-3 px-5 rounded-full btn-a overflow-hidden block w-max group hover:scale-95 transition-all duration-300",
     sizeText,
   ]}
 >
   <span class="opacity-0">{text}</span>
   <span
     class:list={[
-      "absolute inset-[2px] rounded-full bg-tertiary flex items-center justify-center transition-colors duration-300 font-medium",
+      "absolute inset-[2px] rounded-full bg-tertiary flex items-center justify-center transition-colors duration-300 font-medium text-light-bg",
       sizeText,
     ]}>{text}</span
   >
@@ -38,6 +38,7 @@ const sizeText = big ? "text-lg" : "text-sm";
       transparent,
       var(--color-secondary-pro)
     );
+    /* background-color: var(--color-secondary-pro); */
     z-index: -5;
     transform: translate(-50%, -50%);
     opacity: 0;

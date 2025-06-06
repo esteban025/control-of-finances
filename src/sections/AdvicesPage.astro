@@ -45,23 +45,19 @@ const famousQuotes = [
   {
     quote: "La disciplina financiera es la clave para crear riqueza.",
     author: "Robert Kiyosaki",
-    colors: "border-amber-400 text-amber-300",
+    colors: "border-blue-500 text-blue-400",
   },
 ];
 ---
 
-<section
-  id="advices"
-  class="bg-gradient-to-b from-primary via-secondary to-primary pb-20"
->
+<section id="advices" class="pb-20">
   <div class="max-w-5xl mx-auto w-11/12 flex flex-col items-center gap-10">
     <Titles text="Consejos para tu Salud Financiera" subtitle />
-    <p class="text-center text-gray-200 text-balance">
+    <p class="text-center text-light-paragraph text-balance">
       Controlar nuestras finanzas personales es la base para lograr estabilidad,
       tranquilidad y libertad a largo plazo. Saber a dónde va tu dinero te
       permite tomar mejores decisiones, invertir en tu futuro y evitar
-      preocupaciones innecesarias. <strong
-        class="text-secondary-pro font-semibold"
+      preocupaciones innecesarias. <strong class="text-tertiary font-semibold"
         >¡Recuerda que cada peso cuenta!</strong
       >
     </p>
@@ -72,12 +68,10 @@ const famousQuotes = [
           {
             advices.map((advice) => (
               <li class="flex items-start">
-                <span class="text-2xl mr-4 text-emerald-400">
-                  {advice.icon}
-                </span>
+                <span class="text-2xl mr-4 text-tertiary">{advice.icon}</span>
                 <div>
-                  <span class="font-semibold text-white">{advice.title}</span>
-                  <p class="text-gray-300">{advice.description}</p>
+                  <span class="font-semibold">{advice.title}</span>
+                  <p class="text-light-paragraph">{advice.description}</p>
                 </div>
               </li>
             ))
@@ -86,11 +80,14 @@ const famousQuotes = [
       </Card>
     </div>
 
-    <article class="space-y-6">
+    <article class="space-y-6 mb-10">
       {
         famousQuotes.map(({ quote, author, colors }) => (
           <blockquote
-            class:list={["border-l-4 pl-6 italic text-gray-100", colors]}
+            class:list={[
+              "border-l-4 rounded-l-md pl-6 italic text-light-text",
+              colors,
+            ]}
           >
             "{quote}"
             <br />
@@ -101,10 +98,10 @@ const famousQuotes = [
     </article>
 
     <div class="flex flex-col items-center justify-center">
-      <h3 class="text-2xl font-bold text-white mb-4 text-center">
+      <h3 class="text-2xl font-bold mb-4 text-center">
         ¿Listo para tomar el control de tus finanzas?
       </h3>
-      <p class="text-gray-300 mb-6 text-center">
+      <p class="text-light-paragraph mb-6 text-center">
         Empieza hoy mismo y da el primer paso hacia tu libertad financiera.
       </p>
       <UIBottom text="Iniciar sesión con Google" href="/login" big />

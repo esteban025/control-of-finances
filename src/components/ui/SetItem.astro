@@ -10,22 +10,24 @@ const { title, subtitle, description, number }: Props = Astro.props;
 
 <li class="">
   <div
-    class="relative mx-12 pb-12 grid before:absolute before:left-[-35px] before:block before:h-full before:border-l-2 before:border-border-gray before:content-[''] md:grid-cols-5 md:gap-10 md:space-x-4]"
+    class="relative mx-12 pb-8 grid before:absolute before:left-[-35px] before:block before:h-full before:border-l-2 before:border-light-border before:content-[''] md:grid-cols-5 md:gap-7 md:space-x-4"
   >
-    <div class="relative pb-12 md:col-span-2">
+    <div class="relative pb-5 md:col-span-2">
       <div class="sticky top-0">
         <span
-          class="-left-[50px] absolute text-xl rounded-full size-8 grid place-content-center font-bold bg-cyan-400"
+          class="-left-[50px] absolute text-xl rounded-full size-8 grid place-content-center font-bold bg-light-bg border-2 border-tertiary text-tertiary"
           >{number}</span
         >
-        <h3 class="text-xl font-semibold text-cyan-300">{title}</h3>
+        <h3 class="text-xl font-semibold text-tertiary pb-1">{title}</h3>
 
-        <p class="p-0 m-0 text-sm text-gray-400">
+        <p class="p-0 m-0 text-sm">
           {subtitle}
         </p>
       </div>
     </div>
-    <div class="relative flex flex-col gap-2 pb-4 text-gray-300 md:col-span-3">
+    <div
+      class="relative flex flex-col gap-2 pb-4 text-light-paragraph md:col-span-3"
+    >
       {description}
     </div>
   </div>

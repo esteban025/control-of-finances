@@ -7,7 +7,7 @@ const { question, answer }: Props = Astro.props;
 ---
 
 <button
-  class="cursor-pointer w-full btn-faq bg-primary border border-border-gray rounded-lg shadow-lg shadow-black/50 p-2 h-full flex flex-col gap-2"
+  class="cursor-pointer w-full btn-faq border border-light-border rounded-lg shadow-lg shadow-light-paragraph/10 p-2 h-full flex flex-col gap-2"
 >
   <h3 class="font-semibold flex items-center gap-2 w-full truncate">
     <div class="icon w-4 h-4 relative">
@@ -16,7 +16,7 @@ const { question, answer }: Props = Astro.props;
     </div>
     <span>{question}</span>
   </h3>
-  <p class="text-gray-300 text-start pl-10">{answer}</p>
+  <p class="text-light-paragraph text-start pl-10">{answer}</p>
 </button>
 
 <style>
@@ -25,20 +25,20 @@ const { question, answer }: Props = Astro.props;
   }
   .btn-faq h3 {
     /* color: var(--color-secondary); */
-    transition: color 0.3s ease-in-out;
+    transition: color 200ms ease-in-out;
   }
   .btn-faq p {
     /* ocultamos */
     height: 0;
     overflow: hidden;
-    transition: all 0.3s ease-in-out;
+    transition: all 200ms ease-in-out;
     interpolate-size: allow-keywords;
   }
   .btn-faq.open p {
     height: auto;
   }
   .btn-faq.open h3 {
-    color: var(--color-cyan-200);
+    color: var(--color-tertiary);
   }
 
   .line {
@@ -46,8 +46,12 @@ const { question, answer }: Props = Astro.props;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: var(--color-gray-200);
+    background-color: var(--color-light-text);
     border-radius: 5px;
+    transition: all 200ms;
+  }
+  .btn-faq.open .line {
+    background-color: var(--color-tertiary);
   }
 
   .horizontal {
@@ -78,7 +82,7 @@ const { question, answer }: Props = Astro.props;
       paused: true,
       reversed: true,
       defaults: {
-        duration: 0.25,
+        duration: 0.1,
         // ease: "power2",
       },
     });
@@ -88,7 +92,6 @@ const { question, answer }: Props = Astro.props;
         rotate: 45,
         x: 4,
         width: "11px",
-        backgroundColor: "var(--color-cyan-200)",
       },
       0,
     ).to(
@@ -97,7 +100,6 @@ const { question, answer }: Props = Astro.props;
         rotate: 45,
         x: -4,
         height: "11px",
-        backgroundColor: "var(--color-cyan-200)",
       },
       0,
     );
@@ -144,70 +146,3 @@ const { question, answer }: Props = Astro.props;
     });
   });
 </script>
-
-<!-- <script>
-  import { gsap } from "gsap";
-
-  const $faqButtons = document.querySelectorAll(
-    ".btn-faq",
-  ) as NodeListOf<HTMLButtonElement>;
-
-  $faqButtons.forEach((btn) => {
-    const verticalLine = btn.querySelector(".vertical.line");
-    const horizontalLine = btn.querySelector(".horizontal.line");
-
-    const tl = gsap.timeline({
-      paused: true,
-      reversed: true,
-      defaults: {
-        duration: 0.5,
-        ease: "power2",
-      },
-    });
-
-    tl.to(
-      horizontalLine,
-      {
-        rotate: 45,
-        x: 4,
-        width: "12px",
-        backgroundColor: "var(--color-cyan-200)",
-      },
-      "<",
-    ).to(
-      verticalLine,
-      {
-        rotate: 45,
-        x: -4,
-        height: "12px",
-        backgroundColor: "var(--color-cyan-200)",
-      },
-      "<",
-    );
-    btn.addEventListener("click", (e) => {
-      // si no es botton
-      if (btn.tagName !== "BUTTON") e.preventDefault();
-
-      $faqButtons.forEach((otherBtn) => {
-        if (otherBtn !== btn) {
-          otherBtn.classList.remove("open");
-          tl.reversed();
-        }
-      });
-      btn.classList.toggle("open");
-      if (btn.classList.contains("open")) {
-        tl.play();
-      } else {
-        tl.reverse();
-      }
-    });
-  });
-
-  // Opcional: Cerrar todos si se hace click fuera
-  document.addEventListener("click", (e) => {
-    const target = e.target as Node;
-    if (![...$faqButtons].some((btn) => btn.contains(target))) {
-      $faqButtons.forEach((btn) => btn.classList.remove("open"));
-    }
-  });
-</script> -->
