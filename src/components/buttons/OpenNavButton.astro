@@ -1,0 +1,50 @@
+<button
+  class="relative z-50 md:hidden size-7 flex justify-center items-center cursor-pointer btn-menu"
+>
+  <span class="line line-top"></span>
+  <span class="line line-middle"></span>
+  <span class="line line-bottom"></span>
+</button>
+
+<style>
+  .line {
+    position: absolute;
+    width: 90%;
+    height: 3px;
+    background-color: var(--color-gray-300);
+    transition: all 0.3s ease-in-out;
+    border-radius: 5px;
+  }
+
+  .line-top {
+    top: 10%;
+  }
+
+  .line-middle {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .line-bottom {
+    bottom: 10%;
+  }
+</style>
+
+<script>
+  const $btnMenu = document.querySelector(".btn-menu");
+  const $navMobile = document.querySelector(".nav-mobile");
+
+  $btnMenu?.addEventListener("click", () => {
+    $navMobile?.classList.toggle("open");
+  });
+
+  document.addEventListener("click", (eve) => {
+    // si nav mobile esta abierto lo cerramos
+    if ($navMobile?.classList.contains("open")) {
+      const $target = eve.target as HTMLElement;
+      if (!$target.closest(".nav-mobile") && !$target.closest(".btn-menu")) {
+        $navMobile.classList.remove("open");
+      }
+    }
+  });
+</script>

@@ -1,9 +1,11 @@
 ---
+import OpenNavButton from "@/components/buttons/OpenNavButton.astro";
 import UIBottom from "@/components/buttons/UIBottom.astro";
+import NavMobile from "@/components/home/NavMobile.astro";
 import navItems from "@/data/nav";
 ---
 
-<header class="bg-secondary sticky top-0 z-20 animate-header p-4">
+<header class="bg-secondary sticky top-0 z-10 animate-header p-4">
   <div class="w-full max-w-7xl mx-auto flex justify-between items-center">
     <a href="/" class="w-30 block">
       <img src="/logo.webp" alt="Logo de Control de finanzas" class="w-full" />
@@ -22,9 +24,16 @@ import navItems from "@/data/nav";
       </ul>
     </nav>
     <UIBottom text="Iniciar sesión" href="/login" />
+
+    <!-- Mobile Navigation Button and Navist -->
+    <div class="dd">
+      <OpenNavButton />
+      <NavMobile />
+    </div>
   </div>
 </header>
 
+<!-- header -->
 <style>
   .animate-header {
     /* transition: all 2s; */

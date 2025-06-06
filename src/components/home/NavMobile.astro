@@ -1,0 +1,24 @@
+---
+import navItems from "@/data/nav";
+---
+
+<nav
+  class="absolute md:hidden w-10/12 h-dvh top-0 left-[110%] z-50 rounded-lg nav-mobile transition-all duration-300 bg-red-500"
+>
+  <ul class="flex flex-col items-center justify-center h-full">
+    {
+      navItems.map(({ name, href }) => (
+        <li>
+          <a class="capitalize" href={href}>
+            {name}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+<style>
+  .nav-mobile.open {
+    left: calc(100% - 83.333%);
+  }
+</style>

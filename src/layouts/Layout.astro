@@ -1,4 +1,5 @@
 ---
+import NavMobile from "@/components/home/NavMobile.astro";
 import "../styles/global.css";
 import HeaderPage from "@sections/HeaderPage.astro";
 ---
@@ -13,7 +14,7 @@ import HeaderPage from "@sections/HeaderPage.astro";
 		<title>Control de financas | Esteban Dev</title>
 	</head>
 	<body
-		class="font-inter font-light bg-primary text-gray-50 text-base lg:text-lg"
+		class="font-inter font-light bg-primary text-gray-50 text-base lg:text-lg overflow-x-hidden"
 	>
 		<HeaderPage />
 		<slot />
