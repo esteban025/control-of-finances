@@ -1,0 +1,213 @@
+---
+interface Props {
+  question: string;
+  answer: string;
+}
+const { question, answer }: Props = Astro.props;
+---
+
+<button
+  class="cursor-pointer w-full btn-faq bg-primary border border-border-gray rounded-lg shadow-lg shadow-black/50 p-2 h-full flex flex-col gap-2"
+>
+  <h3 class="font-semibold flex items-center gap-2 w-full truncate">
+    <div class="icon w-4 h-4 relative">
+      <span class="horizontal line"></span>
+      <span class="vertical line"></span>
+    </div>
+    <span>{question}</span>
+  </h3>
+  <p class="text-gray-300 text-start pl-10">{answer}</p>
+</button>
+
+<style>
+  .btn-faq {
+    transition: height 300ms ease-in-out;
+  }
+  .btn-faq h3 {
+    /* color: var(--color-secondary); */
+    transition: color 0.3s ease-in-out;
+  }
+  .btn-faq p {
+    /* ocultamos */
+    height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    interpolate-size: allow-keywords;
+  }
+  .btn-faq.open p {
+    height: auto;
+  }
+  .btn-faq.open h3 {
+    color: var(--color-cyan-200);
+  }
+
+  .line {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--color-gray-200);
+    border-radius: 5px;
+  }
+
+  .horizontal {
+    width: 100%;
+    height: 2px;
+  }
+  .vertical {
+    width: 2px;
+    height: 100%;
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+
+  const $btnFaq = document.querySelectorAll(
+    ".btn-faq",
+  ) as NodeListOf<HTMLButtonElement>;
+
+  const timelines = new Map<HTMLButtonElement, gsap.core.Timeline>();
+
+  $btnFaq.forEach((btn) => {
+    const verticalLine = btn.querySelector(".vertical");
+    const horizontalLine = btn.querySelector(".horizontal");
+
+    // Crea la timeline SOLO UNA VEZ por botón
+    const tl = gsap.timeline({
+      paused: true,
+      reversed: true,
+      defaults: {
+        duration: 0.25,
+        // ease: "power2",
+      },
+    });
+    tl.to(
+      horizontalLine,
+      {
+        rotate: 45,
+        x: 4,
+        width: "11px",
+        backgroundColor: "var(--color-cyan-200)",
+      },
+      0,
+    ).to(
+      verticalLine,
+      {
+        rotate: 45,
+        x: -4,
+        height: "11px",
+        backgroundColor: "var(--color-cyan-200)",
+      },
+      0,
+    );
+
+    // Guarda la timeline asociada a este botón
+    timelines.set(btn, tl);
+
+    btn.addEventListener("click", (e) => {
+      if (btn.tagName !== "BUTTON") e.preventDefault();
+
+      // Cierra los demás FAQs y revierte su animación
+      $btnFaq.forEach((otherBtn) => {
+        if (otherBtn !== btn) {
+          otherBtn.classList.remove("open");
+          const otherTl = timelines.get(otherBtn);
+          if (otherTl && !otherTl.reversed()) {
+            otherTl.reverse();
+          }
+        }
+      });
+
+      // Alterna el estado del botón actual y su animación
+      btn.classList.toggle("open");
+      const myTl = timelines.get(btn);
+      if (btn.classList.contains("open")) {
+        myTl?.play();
+      } else {
+        myTl?.reverse();
+      }
+    });
+
+    // Opcional: Cerrar todos si se hace click fuera
+    document.addEventListener("click", (e) => {
+      const target = e.target as Node;
+      if (![...$btnFaq].some((btn) => btn.contains(target))) {
+        $btnFaq.forEach((btn) => {
+          btn.classList.remove("open");
+          const tl = timelines.get(btn);
+          if (tl && !tl.reversed()) {
+            tl.reverse();
+          }
+        });
+      }
+    });
+  });
+</script>
+
+<!-- <script>
+  import { gsap } from "gsap";
+
+  const $faqButtons = document.querySelectorAll(
+    ".btn-faq",
+  ) as NodeListOf<HTMLButtonElement>;
+
+  $faqButtons.forEach((btn) => {
+    const verticalLine = btn.querySelector(".vertical.line");
+    const horizontalLine = btn.querySelector(".horizontal.line");
+
+    const tl = gsap.timeline({
+      paused: true,
+      reversed: true,
+      defaults: {
+        duration: 0.5,
+        ease: "power2",
+      },
+    });
+
+    tl.to(
+      horizontalLine,
+      {
+        rotate: 45,
+        x: 4,
+        width: "12px",
+        backgroundColor: "var(--color-cyan-200)",
+      },
+      "<",
+    ).to(
+      verticalLine,
+      {
+        rotate: 45,
+        x: -4,
+        height: "12px",
+        backgroundColor: "var(--color-cyan-200)",
+      },
+      "<",
+    );
+    btn.addEventListener("click", (e) => {
+      // si no es botton
+      if (btn.tagName !== "BUTTON") e.preventDefault();
+
+      $faqButtons.forEach((otherBtn) => {
+        if (otherBtn !== btn) {
+          otherBtn.classList.remove("open");
+          tl.reversed();
+        }
+      });
+      btn.classList.toggle("open");
+      if (btn.classList.contains("open")) {
+        tl.play();
+      } else {
+        tl.reverse();
+      }
+    });
+  });
+
+  // Opcional: Cerrar todos si se hace click fuera
+  document.addEventListener("click", (e) => {
+    const target = e.target as Node;
+    if (![...$faqButtons].some((btn) => btn.contains(target))) {
+      $faqButtons.forEach((btn) => btn.classList.remove("open"));
+    }
+  });
+</script> -->

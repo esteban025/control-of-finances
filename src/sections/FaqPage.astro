@@ -1,34 +1,29 @@
 ---
-import Card from "@/components/ui/Card.astro";
+import FaqItem from "@/components/faqs/FaqItem.astro";
 import Titles from "@/components/ui/Titles.astro";
 
 const faqs = [
   {
-    icon: "➕",
-    question: "¿Debo ingresar mis datos bancarios o tarjetas de crédito?",
+    question: "¿Debo ingresar mis datos bancarios o tarjetas?",
     answer:
       "No. Jamás te pediremos información bancaria ni datos sensibles. Solo necesitas tu cuenta de Google para acceder y toda la información que registres es manejada con total privacidad.",
   },
   {
-    icon: "➕",
     question: "¿Tiene algún costo usar Control de Finanzas?",
     answer:
       "No, la plataforma es completamente gratuita. Puedes registrar, consultar y analizar tus finanzas sin ningún cargo oculto.",
   },
   {
-    icon: "➕",
     question: "¿Puedo acceder desde mi celular o tablet?",
     answer:
       "¡Por supuesto! Control de Finanzas funciona perfectamente en computadoras, tablets y teléfonos, adaptándose a cualquier pantalla.",
   },
   {
-    icon: "➕",
     question: "¿Qué tan segura es mi información?",
     answer:
       "Utilizamos autenticación segura con Google y no almacenamos información sensible. Tu privacidad y seguridad son nuestra prioridad.",
   },
   {
-    icon: "➕",
     question: "¿Puedo descargar mis reportes financieros?",
     answer:
       "Sí. Puedes exportar tus datos y reportes en formatos accesibles para llevar un respaldo o analizarlos fuera de la plataforma.",
@@ -41,69 +36,10 @@ const faqs = [
     <Titles text="Preguntas Frecuentes" subtitle />
     <div class="space-y-4">
       {
-        faqs.map(({ icon, question, answer }) => (
-          <button class="cursor-pointer w-full btn-faq bg-primary border border-border-gray rounded-lg shadow-lg shadow-black/50 p-2 h-full flex flex-col gap-2">
-            <h3 class="font-semibold space-x-2 truncate text-start">
-              <span>{icon}</span>
-              <span>{question}</span>
-            </h3>
-            <p class="text-gray-300 text-start">{answer}</p>
-          </button>
+        faqs.map(({ question, answer }) => (
+          <FaqItem question={question} answer={answer} />
         ))
       }
     </div>
   </div>
 </section>
-
-<style>
-  .btn-faq {
-    transition: height 300ms ease-in-out;
-  }
-  .btn-faq h3 {
-    /* color: var(--color-secondary); */
-    transition: color 0.3s ease-in-out;
-  }
-  .btn-faq p {
-    /* ocultamos */
-    height: 0;
-    overflow: hidden;
-    transition: all 0.3s ease-in-out;
-    interpolate-size: allow-keywords;
-  }
-  .btn-faq.open p {
-    height: auto;
-  }
-  .btn-faq.open h3 {
-    color: var(--color-cyan-200);
-  }
-</style>
-
-<script>
-  window.addEventListener("DOMContentLoaded", () => {
-    const $faqButtons = document.querySelectorAll(
-      ".btn-faq",
-    ) as NodeListOf<HTMLButtonElement>;
-
-    $faqButtons.forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        // si no es botton
-        if (btn.tagName !== "BUTTON") e.preventDefault();
-
-        $faqButtons.forEach((otherBtn) => {
-          if (otherBtn !== btn) {
-            otherBtn.classList.remove("open");
-          }
-        });
-        btn.classList.toggle("open");
-      });
-    });
-
-    // Opcional: Cerrar todos si se hace click fuera
-    document.addEventListener("click", (e) => {
-      const target = e.target as Node;
-      if (![...$faqButtons].some((btn) => btn.contains(target))) {
-        $faqButtons.forEach((btn) => btn.classList.remove("open"));
-      }
-    });
-  });
-</script>
