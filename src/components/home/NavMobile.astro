@@ -1,11 +1,16 @@
 ---
 import navItems from "@/data/nav";
+import UIBottom from "../buttons/UIBottom.astro";
 ---
 
 <nav
-  class="absolute md:hidden w-10/12 h-dvh top-0 left-[110%] z-50 rounded-lg nav-mobile transition-all duration-300 bg-red-500"
+  class="absolute md:hidden w-10/12 h-dvh top-0 left-[110%] z-50 rounded-lg nav-mobile transition-all duration-300 bg-secondary/50 backdrop-blur-2xl border border-border-gray shadow-lg shadow-black/50 flex flex-col items-center justify-between gap-4 p-4"
 >
-  <ul class="flex flex-col items-center justify-center h-full">
+  <button
+    class="btn-close cursor-pointer border border-border-gray p-1 rounded-lg size-12 self-start"
+    >✖</button
+  >
+  <ul class="flex flex-col items-center justify-center">
     {
       navItems.map(({ name, href }) => (
         <li>
@@ -16,9 +21,20 @@ import navItems from "@/data/nav";
       ))
     }
   </ul>
+  <UIBottom text="Iniciar sesión" href="/login" big />
 </nav>
+
 <style>
   .nav-mobile.open {
     left: calc(100% - 83.333%);
   }
 </style>
+
+<script>
+  const $btnClose = document.querySelector(".btn-close") as HTMLButtonElement;
+  const $navMobile = document.querySelector(".nav-mobile") as HTMLDivElement;
+
+  $btnClose.addEventListener("click", () => {
+    $navMobile.classList.remove("open");
+  });
+</script>

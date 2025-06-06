@@ -26,7 +26,7 @@ import navItems from "@/data/nav";
     <UIBottom text="Iniciar sesión" href="/login" />
 
     <!-- Mobile Navigation Button and Navist -->
-    <div class="dd">
+    <div class="md:hidden">
       <OpenNavButton />
       <NavMobile />
     </div>
@@ -47,14 +47,14 @@ import navItems from "@/data/nav";
       scale: 1;
       border-radius: 0px;
       background-color: #010409;
-      backdrop-filter: blur(0px);
+      /* backdrop-filter: blur(0px); */
       box-shadow: transparent;
     }
     100% {
       scale: 0.9;
       border-radius: 37px;
-      background-color: #010409c2;
-      backdrop-filter: blur(10px);
+      background-color: #010409f1;
+      /* backdrop-filter: blur(10px); */
       box-shadow: 0 8px 12px #ffffff10;
     }
   }
