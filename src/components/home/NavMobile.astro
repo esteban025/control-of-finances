@@ -1,16 +1,18 @@
 ---
 import navItems from "@/data/nav";
 import UIBottom from "../buttons/UIBottom.astro";
+import { ToggleTheme } from "../buttons/ThemeButtonDesktop";
 ---
 
 <nav
-  class="absolute md:hidden w-[300px] h-[80dvh] top-0 left-[110%] z-50 rounded-lg nav-mobile transition-all duration-300 bg-light-bg/50 backdrop-blur-2xl border border-light-border shadow-lg shadow-light-paragraph/10"
+  class="fixed md:hidden w-[300px] h-[70dvh] top-0 z-20 rounded-lg nav-mobile transition-all duration-300 bg-light-bg/50 dark:bg-dark-card-bg/90 backdrop-blur-2xl border border-light-border dark:border-dark-border shadow-lg shadow-light-paragraph/10 dark:shadow-dark-secondary/50"
 >
   <div class="flex flex-col items-center justify-between gap-4 p-4 h-full">
     <button
       class="btn-close cursor-pointer border border-light-border p-1 rounded-lg size-12 self-start"
       >✖</button
     >
+    <ToggleTheme client:load />
     <ul class="flex flex-col items-center justify-center">
       {
         navItems.map(({ name, href }) => (
@@ -27,6 +29,9 @@ import UIBottom from "../buttons/UIBottom.astro";
 </nav>
 
 <style>
+  .nav-mobile {
+    left: 110%;
+  }
   .nav-mobile.open {
     left: calc(100% - 300px);
   }
