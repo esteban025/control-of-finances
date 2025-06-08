@@ -25,6 +25,7 @@
   --color-border-l: #1F6FEB;
 
   /* all themes */
+  --color-secondary: #22C3BB;
   --color-tertiary: #1F6FEB;
   
   /* light */
@@ -32,6 +33,7 @@
   --color-light-text: #1f2328;
   --color-light-paragraph: #59636E;
   --color-light-border: #D1D9E0;
+  --color-light-btn-hover: #EFF2F5;
   --color-light-primary: #1C8139;
   --color-light-secondary: #F6F8FA;
 
