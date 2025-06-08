@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 
 const Sun = () => (
   <svg  
@@ -46,7 +46,11 @@ function getPreferredTheme(): Theme {
 
 export const ToggleTheme:React.FC = () => {
 
-  const [theme, setTheme] = useState<Theme>(getPreferredTheme());
+  const [theme, setTheme] = useState<Theme>('light');
+
+  useEffect(() => {
+    setTheme(getPreferredTheme());
+  }, [])
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark");
