@@ -1,0 +1,65 @@
+<button
+  class="btn-scrollTo fixed bottom-4 right-4 z-50 aspect-square cursor-pointer animate-yoyo rounded-full"
+>
+  <span
+    class="flex items-center justify-center animate-bounce bg-tertiary text-light-secondary rounded-full w-11 p-2 shadow-lg shadow-dark-paragraph hover:bg-dark-primary transition-all duration-300 dark:shadow-dark-secondary/60"
+  >
+    <svg
+      class="w-full h-full"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+        d="M12 5l0 14"></path><path d="M18 11l-6 -6"></path><path d="M6 11l6 -6"
+      ></path>
+    </svg>
+  </span>
+</button>
+
+<style>
+  .btn-scrollTo {
+    animation: show 300ms;
+    animation-timeline: scroll(root);
+    animation-range: 0 400px;
+  }
+  .animate-bounce {
+    animation: bounce 0.5s infinite alternate;
+  }
+
+  @keyframes show {
+    0% {
+      opacity: 0;
+      transform: translateY(20px) scale(0);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes bounce {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-10px);
+    }
+  }
+</style>
+
+<script>
+  // cuando todo el dom esté cargado, agregar el evento de scroll
+  document.addEventListener("DOMContentLoaded", function () {
+    const $btnScrollTo = document.querySelector(
+      ".btn-scrollTo",
+    ) as HTMLButtonElement;
+    $btnScrollTo.addEventListener("click", function () {
+      window.scrollTo({
+        top: 0,
+      });
+    });
+  });
+</script>
