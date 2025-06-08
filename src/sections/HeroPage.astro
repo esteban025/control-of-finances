@@ -35,6 +35,9 @@ import Titles from "@/components/ui/Titles.astro";
     width: 100%;
     height: auto;
     max-width: 800px;
-    filter: drop-shadow(0 10px 10px var(--color-secondary));
+    filter: drop-shadow(0 10px 10px var(--color-light-text));
+  }
+  html.dark .hero-image {
+    filter: drop-shadow(0 10px 10px var(--color-dark-card-bg));
   }
 </style>

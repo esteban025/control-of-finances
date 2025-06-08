@@ -2,6 +2,7 @@
 import NavMobile from "@/components/home/NavMobile.astro";
 import "../styles/global.css";
 import HeaderPage from "@sections/HeaderPage.astro";
+import ScrollTo from "@/components/buttons/ScrollTo.astro";
 ---
 
 <!doctype html>
@@ -18,7 +19,7 @@ import HeaderPage from "@sections/HeaderPage.astro";
 	>
 		<HeaderPage />
 		<NavMobile />
-
 		<slot />
+		<ScrollTo />
 	</body>
 </html>
