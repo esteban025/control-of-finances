@@ -20,12 +20,16 @@ import Faqs from "@/assets/faqs.svg";
       <img src="/logo.webp" alt="Logo de Fitnancial" class="w-full" />
     </a>
     <nav
-      class="order-3 md:order-2 absolute top-0 right-0 w-[300px] rounded-lg nav-mobile transition-all duration-500 bg-light-bg/50 dark:bg-dark-card-bg/90 backdrop-blur-2xl border border-light-border dark:border-dark-border shadow-lg shadow-light-paragraph/10 dark:shadow-dark-secondary/50 z-20 p-4"
+      class="order-3 md:order-2 absolute top-0 right-0 w-[300px] rounded-lg nav-mobile transition-all duration-500 bg-light-bg/50 dark:bg-dark-card-bg/90 backdrop-blur-2xl border border-light-border dark:border-dark-border shadow-lg shadow-light-paragraph/10 dark:shadow-dark-secondary/50 z-20 p-4 md:relative md:border-0 md:backdrop-blur-none md:w-full md:p-0"
     >
-      <ul class="flex flex-col md:flex-row gap-8 my-14 rounded-xl">
-        <li class="font-bold dark:font-semibold">Apariencia</li>
-        <li class="flex justify-between items-center gap-10">
-          <p class="text-sm font-semibold dark:font-normal">
+      <ul
+        class="flex flex-col gap-8 my-14 rounded-xl md:flex-row md:my-0 justify-center"
+      >
+        <li class="font-bold dark:font-semibold md:hidden">Apariencia</li>
+        <li
+          class="flex justify-between items-center gap-10 md:order-2 md:gap-0"
+        >
+          <p class="text-sm font-semibold dark:font-normal md:hidden">
             Dark Mode <span
               class="block font-normal text-light-paragraph dark:text-dark-paragraph"
               >Ajustar el tema de la app</span
@@ -33,8 +37,12 @@ import Faqs from "@/assets/faqs.svg";
           </p>
           <ToggleTheme client:load />
         </li>
-        <ul class="space-y-2 text-sm pt-2">
-          <li class="font-bold text-base dark:font-semibold">Secciones</li>
+        <ul
+          class="flex flex-col gap-2 text-sm pt-2 md:order-1 md:flex-row md:items-center md:p-0 md:gap-8"
+        >
+          <li class="font-bold text-base dark:font-semibold md:hidden">
+            Secciones
+          </li>
           <li>
             <LinkNavMobile href="#benefits">
               <Benefits class="aspect-square w-5" />
@@ -60,7 +68,7 @@ import Faqs from "@/assets/faqs.svg";
             </LinkNavMobile>
           </li>
         </ul>
-        <li class="w-full grid place-content-center">
+        <li class="w-full grid place-content-center md:hidden">
           <UIBottom text="Iniciar sesión" href="/login" big />
         </li>
       </ul>
@@ -99,6 +107,13 @@ import Faqs from "@/assets/faqs.svg";
       }
       .nav-mobile.open {
         clip-path: inset(0 0 0 0);
+      }
+
+      @media (width >= 48rem) {
+        .nav-mobile {
+          background-color: transparent;
+          clip-path: inset(0 0 0 0);
+        }
       }
     </style>
   </div>
