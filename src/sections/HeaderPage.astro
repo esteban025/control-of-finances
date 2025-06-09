@@ -3,7 +3,6 @@ import OpenNavButton from "@/components/buttons/OpenNavButton.astro";
 import { ToggleTheme } from "@/components/buttons/ThemeButtonDesktop";
 import UIBottom from "@/components/buttons/UIBottom.astro";
 import LinkNavMobile from "@/components/home/LinkNavMobile.astro";
-import navItems from "@/data/nav";
 
 import Benefits from "@/assets/benefits.svg";
 import HowItWorks from "@/assets/howItWork.svg";
@@ -44,25 +43,25 @@ import Faqs from "@/assets/faqs.svg";
             Secciones
           </li>
           <li>
-            <LinkNavMobile href="#benefits">
+            <LinkNavMobile href="#benefits" label="benefits">
               <Benefits class="aspect-square w-5" />
               <span>Beneficios</span>
             </LinkNavMobile>
           </li>
           <li>
-            <LinkNavMobile href="#how-it-works">
+            <LinkNavMobile href="#how-it-works" label="how-it-works">
               <HowItWorks class="aspect-square w-5" />
               <span>Cómo funciona</span>
             </LinkNavMobile>
           </li>
           <li>
-            <LinkNavMobile href="#advices">
+            <LinkNavMobile href="#advices" label="advices">
               <Advices class="aspect-square w-5" />
               <span>Consejos</span>
             </LinkNavMobile>
           </li>
           <li>
-            <LinkNavMobile href="#faqs">
+            <LinkNavMobile href="#faqs" label="faqs">
               <Faqs class="aspect-square w-5" />
               <span>Preguntas frecuentes</span>
             </LinkNavMobile>
@@ -118,3 +117,45 @@ import Faqs from "@/assets/faqs.svg";
     </style>
   </div>
 </header>
+
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const sections = document.querySelectorAll(".section");
+    const navItems = document.querySelectorAll(".btn-nav");
+
+    const callback = (entries: any[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          navItems.forEach((item) => {
+            if (item.getAttribute("aria-label") == entry.target.id) {
+              item.classList.add("active");
+            } else {
+              item.classList.remove("active");
+            }
+          });
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(callback, {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.35,
+    });
+
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+
+    // Cleanup function
+    document.onvisibilitychange = () => {
+      if (document.visibilityState === "hidden") {
+        observer.disconnect();
+      } else {
+        sections.forEach((section) => {
+          observer.observe(section);
+        });
+      }
+    };
+  });
+</script>

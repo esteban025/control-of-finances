@@ -1,20 +1,26 @@
 ---
 interface Props {
+  label: string;
   href: string;
 }
-const { href }: Props = Astro.props;
+const { href, label }: Props = Astro.props;
 ---
 
 <a
-  class="capitalize w-full bg-light-secondary border border-light-border flex items-center gap-2 text-light-paragraph p-1 rounded-lg hover:bg-light-btn-hover hover:translate-x-1 hover:text-light-text hover:border-light-paragraph/80 transition-all duration-300 dark:bg-dark-card-bg dark:border-dark-border/40 dark:text-dark-paragraph dark:hover:bg-dark-bg/20 dark:hover:text-dark-text/80 dark:hover:border-dark-border md:p-0 md:bg-transparent md:border-none md:hover:translate-x-0 md:gap-1"
+  class="capitalize w-full bg-light-secondondary border border-light-border flex items-center gap-2 text-light-paragraph p-1 rounded-lg hover:bg-light-btn-hover hover:translate-x-1 hover:text-light-text hover:border-light-paragraph/80 transition-all duration-300 dark:bg-dark-card-bg dark:border-dark-border/40 dark:text-dark-paragraph dark:hover:bg-dark-bg/20 dark:hover:text-dark-text/80 dark:hover:border-dark-border md:p-0 md:border-none md:hover:translate-x-0 md:gap-1 btn-nav"
   href={href}
+  aria-label={label}
 >
   <slot />
 </a>
 
 <style>
+  .btn-nav.active {
+    color: var(--color-tertiary);
+    border-color: var(--color-tertiary);
+  }
   @media (width >= 48rem) {
-    a {
+    .btn-nav {
       background-color: transparent;
     }
   }
