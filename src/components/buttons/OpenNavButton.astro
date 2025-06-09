@@ -1,5 +1,5 @@
 <button
-  class="relative z-50 md:hidden size-7 flex justify-center items-center cursor-pointer btn-menu"
+  class="relative z-50 md:hidden size-7 flex justify-center items-center cursor-pointer btn-menu transition-transform duration-500 ease-in-out"
 >
   <span class="line line-top"></span>
   <span class="line line-middle"></span>
@@ -7,17 +7,24 @@
 </button>
 
 <style>
+  .btn-menu.open {
+    transform: translateX(-240px);
+  }
   .line {
     position: absolute;
     width: 90%;
     height: 3px;
-    background-color: var(--color-gray-300);
-    transition: all 0.3s ease-in-out;
+    background-color: var(--color-light-text);
+    transition: all 400ms linear;
     border-radius: 5px;
+  }
+  html.dark .line {
+    background-color: var(--color-dark-text);
   }
 
   .line-top {
     top: 10%;
+    /* rotate: 45deg; */
   }
 
   .line-middle {
@@ -27,15 +34,29 @@
 
   .line-bottom {
     bottom: 10%;
+    /* rotate: -45deg; */
+  }
+  .btn-menu.open .line-middle {
+    transform: translateY(-50%) scale(0);
+  }
+  .btn-menu.open .line-top {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+  }
+  .btn-menu.open .line-bottom {
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
   }
 </style>
 
 <script>
+  // import
   const $btnMenu = document.querySelector(".btn-menu");
   const $navMobile = document.querySelector(".nav-mobile");
 
   $btnMenu?.addEventListener("click", () => {
     $navMobile?.classList.toggle("open");
+    $btnMenu?.classList.toggle("open");
   });
 
   document.addEventListener("click", (eve) => {
@@ -43,6 +64,7 @@
     if ($navMobile?.classList.contains("open")) {
       const $target = eve.target as HTMLElement;
       if (!$target.closest(".nav-mobile") && !$target.closest(".btn-menu")) {
+        $btnMenu?.classList.remove("open");
         $navMobile.classList.remove("open");
       }
     }

@@ -2,7 +2,13 @@
 import OpenNavButton from "@/components/buttons/OpenNavButton.astro";
 import { ToggleTheme } from "@/components/buttons/ThemeButtonDesktop";
 import UIBottom from "@/components/buttons/UIBottom.astro";
+import LinkNavMobile from "@/components/home/LinkNavMobile.astro";
 import navItems from "@/data/nav";
+
+import Benefits from "@/assets/benefits.svg";
+import HowItWorks from "@/assets/howItWork.svg";
+import Advices from "@/assets/advices.svg";
+import Faqs from "@/assets/faqs.svg";
 ---
 
 <header
@@ -10,54 +16,90 @@ import navItems from "@/data/nav";
 >
   <!-- <NavMobile /> -->
   <div class="w-full max-w-6xl mx-auto flex justify-between items-center">
-    <a href="/" class="w-30 block">
+    <a href="/" class="w-30 block order-1">
       <img src="/logo.webp" alt="Logo de Fitnancial" class="w-full" />
     </a>
-    <nav class="hidden md:block text-light-paragraph dark:text-dark-paragraph">
-      <ul class="flex items-center justify-center gap-4">
-        {
-          navItems.map(({ name, href }) => (
-            <li>
-              <a class="capitalize" href={href}>
-                {name}
-              </a>
-            </li>
-          ))
-        }
-        <li class="grid place-content-center pl-8">
+    <nav
+      class="order-3 md:order-2 absolute top-0 right-0 w-[300px] rounded-lg nav-mobile transition-all duration-500 bg-light-bg/50 dark:bg-dark-card-bg/90 backdrop-blur-2xl border border-light-border dark:border-dark-border shadow-lg shadow-light-paragraph/10 dark:shadow-dark-secondary/50 z-20 p-4"
+    >
+      <ul class="flex flex-col md:flex-row gap-8 my-14 rounded-xl">
+        <li class="font-bold dark:font-semibold">Apariencia</li>
+        <li class="flex justify-between items-center gap-10">
+          <p class="text-sm font-semibold dark:font-normal">
+            Dark Mode <span
+              class="block font-normal text-light-paragraph dark:text-dark-paragraph"
+              >Ajustar el tema de la app</span
+            >
+          </p>
           <ToggleTheme client:load />
+        </li>
+        <ul class="space-y-2 text-sm pt-2">
+          <li class="font-bold text-base dark:font-semibold">Secciones</li>
+          <li>
+            <LinkNavMobile href="#benefits">
+              <Benefits class="aspect-square w-5" />
+              <span>Beneficios</span>
+            </LinkNavMobile>
+          </li>
+          <li>
+            <LinkNavMobile href="#how-it-works">
+              <HowItWorks class="aspect-square w-5" />
+              <span>Cómo funciona</span>
+            </LinkNavMobile>
+          </li>
+          <li>
+            <LinkNavMobile href="#advices">
+              <Advices class="aspect-square w-5" />
+              <span>Consejos</span>
+            </LinkNavMobile>
+          </li>
+          <li>
+            <LinkNavMobile href="#faqs">
+              <Faqs class="aspect-square w-5" />
+              <span>Preguntas frecuentes</span>
+            </LinkNavMobile>
+          </li>
+        </ul>
+        <li class="w-full grid place-content-center">
+          <UIBottom text="Iniciar sesión" href="/login" big />
         </li>
       </ul>
     </nav>
-    <UIBottom text="Iniciar sesión" href="/login" />
-
-    <!-- Mobile Navigation Button and Navist -->
-    <div class="md:hidden">
-      <OpenNavButton />
-      <!-- <NavMobile /> -->
+    <div class="order-2 md:order-3">
+      <UIBottom text="Iniciar sesión" href="/login" />
     </div>
+    <div class="order-4 md:order-1">
+      <OpenNavButton />
+    </div>
+
+    <!-- header -->
+    <style>
+      .animate-header {
+        /* transition: all 2s; */
+        animation: scrollDown 2s linear both;
+        animation-timeline: scroll(root);
+        animation-range: 0 200px;
+      }
+
+      @keyframes scrollDown {
+        0% {
+          scale: 1;
+          border-radius: 0px;
+          box-shadow: transparent;
+        }
+        100% {
+          scale: 0.95;
+          border-radius: 37px;
+          box-shadow: 0 8px 12px #00000020;
+        }
+      }
+      .nav-mobile {
+        /* transition: clip-path 200ms ease-in-out; */
+        clip-path: inset(0 0 0 100%);
+      }
+      .nav-mobile.open {
+        clip-path: inset(0 0 0 0);
+      }
+    </style>
   </div>
 </header>
-
-<!-- header -->
-<style>
-  .animate-header {
-    /* transition: all 2s; */
-    animation: scrollDown 2s linear both;
-    animation-timeline: scroll(root);
-    animation-range: 0 200px;
-  }
-
-  @keyframes scrollDown {
-    0% {
-      scale: 1;
-      border-radius: 0px;
-      box-shadow: transparent;
-    }
-    100% {
-      scale: 0.95;
-      border-radius: 37px;
-      box-shadow: 0 8px 12px #00000020;
-    }
-  }
-</style>
