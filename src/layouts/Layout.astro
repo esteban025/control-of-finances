@@ -3,6 +3,7 @@ import NavMobile from "@/components/home/NavMobile.astro";
 import "../styles/global.css";
 import HeaderPage from "@sections/HeaderPage.astro";
 import ScrollTo from "@/components/buttons/ScrollTo.astro";
+import FooterPage from "@/sections/FooterPage.astro";
 ---
 
 <!doctype html>
@@ -12,7 +13,7 @@ import ScrollTo from "@/components/buttons/ScrollTo.astro";
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Control de financas | Esteban Dev</title>
+		<title>FitNancial | Control de finanzas Esteban Dev</title>
 	</head>
 	<body
 		class="font-inter font-normal w-full bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text text-base max-w-[1366px] mx-auto overflow-x-hidden transition-colors duration-300"
@@ -21,5 +22,6 @@ import ScrollTo from "@/components/buttons/ScrollTo.astro";
 		<NavMobile />
 		<slot />
 		<ScrollTo />
+		<FooterPage />
 	</body>
 </html>

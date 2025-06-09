@@ -1,0 +1,67 @@
+---
+import UIBottom from "@/components/buttons/UIBottom.astro";
+import navItems from "@/data/nav";
+---
+
+<footer
+  class="bg-light-secondary border-t border-light-border dark:bg-dark-secondary dark:border-dark-border"
+>
+  <section
+    class="w-11/12 mx-auto flex flex-col md:flex-row items-center py-4 space-y-8"
+  >
+    <div class="space-y-4">
+      <img src="/logo.webp" alt="Logo de Fitnancial" class="w-32" />
+      <p class="text-lg text-balance max-w-[600px]">
+        Gracias por visitar Fitnancial, esperamos que encuentres útil nuestra
+        aplicación.
+      </p>
+      <UIBottom text="Iniciar Sesión" href="/login" big />
+    </div>
+
+    <div class="flex gap-4 w-full md:justify-around">
+      <div class="space-y-3 flex-1 md:flex-0">
+        <h4 class="font-bold">General</h4>
+        <ul class="min-w-max">
+          {
+            navItems.map((item) => (
+              <li>
+                <a
+                  class="capitalize hover:underline text-light-paragraph dark:text-dark-paragraph"
+                  href={item.href}
+                >
+                  {item.name}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div class="space-y-3 flex-1 md:flex-0">
+        <h4 class="font-bold">Síguenos</h4>
+        <ul>
+          <li>
+            <a
+              class="capitalize hover:underline text-light-paragraph dark:text-dark-paragraph"
+              href="#">facebook</a>
+          </li>
+          <li>
+            <a
+              class="capitalize hover:underline text-light-paragraph dark:text-dark-paragraph"
+              href="#">twitter</a>
+          </li>
+          <li>
+            <a
+              class="capitalize hover:underline text-light-paragraph dark:text-dark-paragraph"
+              href="#">linkedin</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <div
+    class="py-2 border-t border-light-border flex items-center justify-between gap-2 w-11/12 mx-auto dark:border-dark-border text-light-paragraph dark:text-dark-paragraph"
+  >
+    <p>© 2025 Fitnancial. Todos los derechos reservados.</p>
+    <p>Desarrollado por Esteban Dev</p>
+  </div>
+</footer>
