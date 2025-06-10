@@ -19,6 +19,10 @@ const { href, label }: Props = Astro.props;
     color: var(--color-tertiary);
     border-color: var(--color-tertiary);
   }
+  html.dark .btn-nav.active {
+    color: var(--color-dark-primary);
+    border-color: var(--color-dark-primary);
+  }
   @media (width >= 48rem) {
     .btn-nav {
       background-color: transparent;

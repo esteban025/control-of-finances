@@ -9,72 +9,71 @@ import LinkNavMobile from "./LinkNavMobile.astro";
 ---
 
 <nav
-  class="fixed md:hidden w-[300px] h-[80dvh] top-0 z-20 rounded-lg nav-mobile transition-all duration-300 bg-light-bg/50 dark:bg-dark-card-bg/90 backdrop-blur-2xl border border-light-border dark:border-dark-border shadow-lg shadow-light-paragraph/10 dark:shadow-dark-secondary/50"
+  class="order-3 md:order-2 absolute top-0 right-0 w-[300px] rounded-lg nav-mobile transition-all duration-500 bg-light-bg/50 dark:bg-dark-card-bg/90 backdrop-blur-2xl border border-light-border dark:border-dark-border shadow-lg shadow-light-paragraph/10 dark:shadow-dark-secondary/50 z-20 p-4 md:relative md:border-0 md:backdrop-blur-none md:w-full md:p-0"
 >
-  <div
-    class="flex flex-col items-center justify-between gap-4 p-4 h-full w-full"
+  <ul
+    class="flex flex-col gap-8 my-14 rounded-xl md:flex-row md:my-0 justify-center"
   >
-    <button
-      class="btn-close cursor-pointer border border-light-border dark:border-dark-border p-1 rounded-lg size-8 self-start grid place-content-center text-lg transition-colors duration-300 bg-light-secondary hover:bg-light-paragraph/10 dark:bg-dark-card-bg"
-      >✖</button
+    <li class="font-bold dark:font-semibold md:hidden">Apariencia</li>
+    <li class="flex justify-between items-center gap-10 md:order-2 md:gap-0">
+      <p class="text-sm font-semibold dark:font-normal md:hidden">
+        Dark Mode <span
+          class="block font-normal text-light-paragraph dark:text-dark-paragraph"
+          >Ajustar el tema de la app</span
+        >
+      </p>
+      <ToggleTheme client:load />
+    </li>
+    <ul
+      class="flex flex-col gap-2 text-sm pt-2 md:order-1 md:flex-row md:items-center md:p-0 md:gap-8"
     >
-    <ul class="w-full space-y-3">
-      <li class="font-bold dark:font-semibold">Apariencia</li>
-      <li class="flex justify-between items-center gap-10">
-        <p class="text-sm font-semibold dark:font-normal">
-          Dark Mode <span
-            class="block font-normal text-light-paragraph dark:text-dark-paragraph"
-            >Ajustar el tema de la app</span
-          >
-        </p>
-        <ToggleTheme client:load />
+      <li class="font-bold text-base dark:font-semibold md:hidden">
+        Secciones
       </li>
-      <ul class="space-y-2 text-sm pt-5">
-        <li class="font-bold text-base dark:font-semibold">Secciones</li>
-        <li>
-          <LinkNavMobile href="#benefits">
-            <Benefits class="aspect-square w-5" />
-            <span>Beneficios</span>
-          </LinkNavMobile>
-        </li>
-        <li>
-          <LinkNavMobile href="#how-it-works">
-            <HowItWorks class="aspect-square w-5" />
-            <span>Cómo funciona</span>
-          </LinkNavMobile>
-        </li>
-        <li>
-          <LinkNavMobile href="#advices">
-            <Advices class="aspect-square w-5" />
-            <span>Consejos</span>
-          </LinkNavMobile>
-        </li>
-        <li>
-          <LinkNavMobile href="#faqs">
-            <Faqs class="aspect-square w-5" />
-            <span>Preguntas frecuentes</span>
-          </LinkNavMobile>
-        </li>
-      </ul>
+      <li>
+        <LinkNavMobile href="#benefits" label="benefits">
+          <Benefits class="aspect-square w-5" />
+          <span>Beneficios</span>
+        </LinkNavMobile>
+      </li>
+      <li>
+        <LinkNavMobile href="#how-it-works" label="how-it-works">
+          <HowItWorks class="aspect-square w-5" />
+          <span>Cómo funciona</span>
+        </LinkNavMobile>
+      </li>
+      <li>
+        <LinkNavMobile href="#advices" label="advices">
+          <Advices class="aspect-square w-5" />
+          <span>Consejos</span>
+        </LinkNavMobile>
+      </li>
+      <li>
+        <LinkNavMobile href="#faqs" label="faqs">
+          <Faqs class="aspect-square w-5" />
+          <span>Preguntas frecuentes</span>
+        </LinkNavMobile>
+      </li>
     </ul>
-    <UIBottom text="Iniciar sesión" href="/login" big />
-  </div>
+    <li class="w-full grid place-content-center md:hidden">
+      <UIBottom text="Iniciar sesión" href="/login" big />
+    </li>
+  </ul>
 </nav>
 
 <style>
   .nav-mobile {
-    left: 110%;
+    /* transition: clip-path 200ms ease-in-out; */
+    clip-path: inset(0 0 0 100%);
   }
   .nav-mobile.open {
-    left: calc(100% - 300px);
+    clip-path: inset(0 0 0 0);
+  }
+
+  @media (width >= 48rem) {
+    .nav-mobile {
+      background-color: transparent;
+      clip-path: inset(0 0 0 0);
+    }
   }
 </style>
-
-<script>
-  const $btnClose = document.querySelector(".btn-close") as HTMLButtonElement;
-  const $navMobile = document.querySelector(".nav-mobile") as HTMLDivElement;
-
-  $btnClose.addEventListener("click", () => {
-    $navMobile.classList.remove("open");
-  });
-</script>
