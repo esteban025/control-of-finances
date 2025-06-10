@@ -75,83 +75,84 @@ const { question, answer }: Props = Astro.props;
 
 <script>
   import { gsap } from "gsap";
+  document.addEventListener("astro:page-load", () => {
+    const $btnFaq = document.querySelectorAll(
+      ".btn-faq",
+    ) as NodeListOf<HTMLButtonElement>;
 
-  const $btnFaq = document.querySelectorAll(
-    ".btn-faq",
-  ) as NodeListOf<HTMLButtonElement>;
+    const timelines = new Map<HTMLButtonElement, gsap.core.Timeline>();
 
-  const timelines = new Map<HTMLButtonElement, gsap.core.Timeline>();
+    $btnFaq.forEach((btn) => {
+      const verticalLine = btn.querySelector(".vertical");
+      const horizontalLine = btn.querySelector(".horizontal");
 
-  $btnFaq.forEach((btn) => {
-    const verticalLine = btn.querySelector(".vertical");
-    const horizontalLine = btn.querySelector(".horizontal");
+      // Crea la timeline SOLO UNA VEZ por botón
+      const tl = gsap.timeline({
+        paused: true,
+        reversed: true,
+        defaults: {
+          duration: 0.1,
+          // ease: "power2",
+        },
+      });
+      tl.to(
+        horizontalLine,
+        {
+          rotate: 45,
+          x: 4,
+          width: "11px",
+        },
+        0,
+      ).to(
+        verticalLine,
+        {
+          rotate: 45,
+          x: -4,
+          height: "11px",
+        },
+        0,
+      );
 
-    // Crea la timeline SOLO UNA VEZ por botón
-    const tl = gsap.timeline({
-      paused: true,
-      reversed: true,
-      defaults: {
-        duration: 0.1,
-        // ease: "power2",
-      },
-    });
-    tl.to(
-      horizontalLine,
-      {
-        rotate: 45,
-        x: 4,
-        width: "11px",
-      },
-      0,
-    ).to(
-      verticalLine,
-      {
-        rotate: 45,
-        x: -4,
-        height: "11px",
-      },
-      0,
-    );
+      // Guarda la timeline asociada a este botón
+      timelines.set(btn, tl);
 
-    // Guarda la timeline asociada a este botón
-    timelines.set(btn, tl);
+      btn.addEventListener("click", (e) => {
+        if (btn.tagName !== "BUTTON") e.preventDefault();
 
-    btn.addEventListener("click", (e) => {
-      if (btn.tagName !== "BUTTON") e.preventDefault();
-
-      // Cierra los demás FAQs y revierte su animación
-      $btnFaq.forEach((otherBtn) => {
-        if (otherBtn !== btn) {
-          otherBtn.classList.remove("open");
-          const otherTl = timelines.get(otherBtn);
-          if (otherTl && !otherTl.reversed()) {
-            otherTl.reverse();
+        // Cierra los demás FAQs y revierte su animación
+        $btnFaq.forEach((otherBtn) => {
+          if (otherBtn !== btn) {
+            otherBtn.classList.remove("open");
+            const otherTl = timelines.get(otherBtn);
+            if (otherTl && !otherTl.reversed()) {
+              otherTl.reverse();
+            }
           }
+        });
+
+        // Alterna el estado del botón actual y su animación
+        btn.classList.toggle("open");
+        const myTl = timelines.get(btn);
+        if (btn.classList.contains("open")) {
+          myTl?.play();
+        } else {
+          myTl?.reverse();
         }
       });
 
-      // Alterna el estado del botón actual y su animación
-      btn.classList.toggle("open");
-      const myTl = timelines.get(btn);
-      if (btn.classList.contains("open")) {
-        myTl?.play();
-      } else {
-        myTl?.reverse();
-      }
-    });
-
-    // Opcional: Cerrar todos si se hace click fuera
-    document.addEventListener("click", (e) => {
-      const target = e.target as Node;
-      if (![...$btnFaq].some((btn) => btn.contains(target))) {
-        $btnFaq.forEach((btn) => {
-          btn.classList.remove("open");
-          const tl = timelines.get(btn);
-          if (tl && !tl.reversed()) {
-            tl.reverse();
-          }
-        });
-      }
+      // Opcional: Cerrar todos si se hace click fuera
+      document.addEventListener("click", (e) => {
+        const target = e.target as Node;
+        if (![...$btnFaq].some((btn) => btn.contains(target))) {
+          $btnFaq.forEach((btn) => {
+            btn.classList.remove("open");
+            const tl = timelines.get(btn);
+            if (tl && !tl.reversed()) {
+              tl.reverse();
+            }
+          });
+        }
+      });
     });
   });
 </script>
