@@ -6,6 +6,11 @@ import HowItWorks from "@/assets/howItWork.svg";
 import Advices from "@/assets/advices.svg";
 import Faqs from "@/assets/faqs.svg";
 import LinkNavMobile from "./LinkNavMobile.astro";
+
+interface Props {
+  inHome: boolean;
+}
+const { inHome }: Props = Astro.props;
 ---
 
 <nav
@@ -22,42 +27,48 @@ import LinkNavMobile from "./LinkNavMobile.astro";
           >Ajustar el tema de la app</span
         >
       </p>
-      <ToggleTheme client:load />
+      <ToggleTheme client:load transition:name="theme-button" />
     </li>
-    <ul
-      class="flex flex-col gap-2 text-sm pt-2 md:order-1 md:flex-row md:items-center md:p-0 md:gap-8"
-    >
-      <li class="font-bold text-base dark:font-semibold md:hidden">
-        Secciones
-      </li>
-      <li>
-        <LinkNavMobile href="#benefits" label="benefits">
-          <Benefits class="aspect-square w-5" />
-          <span>Beneficios</span>
-        </LinkNavMobile>
-      </li>
-      <li>
-        <LinkNavMobile href="#how-it-works" label="how-it-works">
-          <HowItWorks class="aspect-square w-5" />
-          <span>Cómo funciona</span>
-        </LinkNavMobile>
-      </li>
-      <li>
-        <LinkNavMobile href="#advices" label="advices">
-          <Advices class="aspect-square w-5" />
-          <span>Consejos</span>
-        </LinkNavMobile>
-      </li>
-      <li>
-        <LinkNavMobile href="#faqs" label="faqs">
-          <Faqs class="aspect-square w-5" />
-          <span>Preguntas frecuentes</span>
-        </LinkNavMobile>
-      </li>
-    </ul>
-    <li class="w-full grid place-content-center md:hidden">
-      <UIBottom text="Iniciar sesión" href="/login" big />
-    </li>
+    {
+      !inHome && (
+        <ul class="flex flex-col gap-2 text-sm pt-2 md:order-1 md:flex-row md:items-center md:p-0 md:gap-8">
+          <li class="font-bold text-base dark:font-semibold md:hidden">
+            Secciones
+          </li>
+          <li>
+            <LinkNavMobile href="#benefits" label="benefits">
+              <Benefits class="aspect-square w-5" />
+              <span>Beneficios</span>
+            </LinkNavMobile>
+          </li>
+          <li>
+            <LinkNavMobile href="#how-it-works" label="how-it-works">
+              <HowItWorks class="aspect-square w-5" />
+              <span>Cómo funciona</span>
+            </LinkNavMobile>
+          </li>
+          <li>
+            <LinkNavMobile href="#advices" label="advices">
+              <Advices class="aspect-square w-5" />
+              <span>Consejos</span>
+            </LinkNavMobile>
+          </li>
+          <li>
+            <LinkNavMobile href="#faqs" label="faqs">
+              <Faqs class="aspect-square w-5" />
+              <span>Preguntas frecuentes</span>
+            </LinkNavMobile>
+          </li>
+        </ul>
+      )
+    }
+    {
+      !inHome && (
+        <li class="w-full grid place-content-center md:hidden">
+          <UIBottom text="Iniciar sesión" href="/login" big />
+        </li>
+      )
+    }
   </ul>
 </nav>
 

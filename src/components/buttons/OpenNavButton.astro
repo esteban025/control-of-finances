@@ -1,4 +1,5 @@
 <button
+  transition:name="open-nav-button"
   class="relative z-50 md:hidden size-7 flex justify-center items-center cursor-pointer btn-menu transition-transform duration-500 ease-in-out"
 >
   <span class="line line-top"></span>
@@ -51,22 +52,24 @@
 
 <script>
   // import
-  const $btnMenu = document.querySelector(".btn-menu");
-  const $navMobile = document.querySelector(".nav-mobile");
+  document.addEventListener("astro:page-load", () => {
+    const $btnMenu = document.querySelector(".btn-menu");
+    const $navMobile = document.querySelector(".nav-mobile");
 
-  $btnMenu?.addEventListener("click", () => {
-    $navMobile?.classList.toggle("open");
-    $btnMenu?.classList.toggle("open");
-  });
+    $btnMenu?.addEventListener("click", () => {
+      $navMobile?.classList.toggle("open");
+      $btnMenu?.classList.toggle("open");
+    });
 
-  document.addEventListener("click", (eve) => {
-    // si nav mobile esta abierto lo cerramos
-    if ($navMobile?.classList.contains("open")) {
-      const $target = eve.target as HTMLElement;
-      if (!$target.closest(".nav-mobile") && !$target.closest(".btn-menu")) {
-        $btnMenu?.classList.remove("open");
-        $navMobile.classList.remove("open");
+    document.addEventListener("click", (eve) => {
+      // si nav mobile esta abierto lo cerramos
+      if ($navMobile?.classList.contains("open")) {
+        const $target = eve.target as HTMLElement;
+        if (!$target.closest(".nav-mobile") && !$target.closest(".btn-menu")) {
+          $btnMenu?.classList.remove("open");
+          $navMobile.classList.remove("open");
+        }
       }
-    }
+    });
   });
 </script>

@@ -2,6 +2,10 @@
 import OpenNavButton from "@/components/buttons/OpenNavButton.astro";
 import UIBottom from "@/components/buttons/UIBottom.astro";
 import NavMobile from "@/components/home/NavMobile.astro";
+interface Props {
+  home?: boolean;
+}
+const { home = false }: Props = Astro.props;
 ---
 
 <header
@@ -9,13 +13,18 @@ import NavMobile from "@/components/home/NavMobile.astro";
 >
   <!-- <NavMobile /> -->
   <div class="w-full max-w-6xl mx-auto flex justify-between items-center">
-    <a href="/" class="w-30 block order-1">
+    <a href="/" class="w-30 block order-1" transition:name="logo-pages">
       <img src="/logo.webp" alt="Logo de Fitnancial" class="w-full" />
     </a>
-    <NavMobile />
-    <div class="order-2 md:order-3">
-      <UIBottom text="Iniciar sesión" href="/login" />
-    </div>
+    <NavMobile inHome={home} />
+    {
+      !home && (
+        <div class="order-2 md:order-3">
+          <UIBottom text="Iniciar sesión" href="/login" />
+        </div>
+      )
+    }
+
     <div class="order-4 md:order-1">
       <OpenNavButton />
     </div>
@@ -46,7 +55,7 @@ import NavMobile from "@/components/home/NavMobile.astro";
 </header>
 
 <script>
-  window.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("astro:page-load", () => {
     const sections = document.querySelectorAll(".section");
     const navItems = document.querySelectorAll(".btn-nav");
 

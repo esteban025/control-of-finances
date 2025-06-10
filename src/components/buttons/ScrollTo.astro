@@ -52,7 +52,7 @@
 
 <script>
   // cuando todo el dom esté cargado, agregar el evento de scroll
-  document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener("astro:page-load", function () {
     const $btnScrollTo = document.querySelector(
       ".btn-scrollTo",
     ) as HTMLButtonElement;

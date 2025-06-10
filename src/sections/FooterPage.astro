@@ -1,6 +1,11 @@
 ---
 import UIBottom from "@/components/buttons/UIBottom.astro";
 import navItems from "@/data/nav";
+
+interface Props {
+  home?: boolean;
+}
+const { home = false }: Props = Astro.props;
 ---
 
 <footer
@@ -15,7 +20,7 @@ import navItems from "@/data/nav";
         Gracias por visitar Fitnancial, esperamos que encuentres útil nuestra
         aplicación.
       </p>
-      <UIBottom text="Iniciar Sesión" href="/login" big />
+      {!home && <UIBottom text="Iniciar Sesión" href="/login" big />}
     </div>
 
     <div class="flex gap-4 w-full md:justify-around">
@@ -42,17 +47,20 @@ import navItems from "@/data/nav";
           <li>
             <a
               class="capitalize hover:underline text-light-paragraph dark:text-dark-paragraph"
-              href="#">facebook</a>
+              href="#">facebook</a
+            >
           </li>
           <li>
             <a
               class="capitalize hover:underline text-light-paragraph dark:text-dark-paragraph"
-              href="#">twitter</a>
+              href="#">twitter</a
+            >
           </li>
           <li>
             <a
               class="capitalize hover:underline text-light-paragraph dark:text-dark-paragraph"
-              href="#">linkedin</a>
+              href="#">linkedin</a
+            >
           </li>
         </ul>
       </div>
