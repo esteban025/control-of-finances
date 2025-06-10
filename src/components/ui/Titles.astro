@@ -2,17 +2,24 @@
 interface Props {
   text: string;
   subtitle?: boolean;
+  className?: string;
 }
-const { subtitle = false, text }: Props = Astro.props;
+const { subtitle = false, text, className }: Props = Astro.props;
 ---
 
 {
   subtitle ? (
-    <h2 class="font-semibold text-center font-playfair text-balance subtitle">
+    <h2
+      class={`font-semibold text-center font-playfair text-balance subtitle ${className}`}
+    >
       {text}
     </h2>
   ) : (
-    <h1 class="font-playfair text-balance principal-title text-6xl">{text}</h1>
+    <h1
+      class={`font-playfair text-balance principal-title text-6xl ${className}`}
+    >
+      {text}
+    </h1>
   )
 }
 
