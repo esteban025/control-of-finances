@@ -1,0 +1,41 @@
+/* dialogs */
+.dialog-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(11/12 * 100%);
+  max-width: 36rem;
+  margin: 0 auto;
+  background-color: transparent;
+
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(8px);
+  }
+}
+
+.content-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+}
+.content-inputs .label {
+  color: var(--color-light-text);
+  font-weight: 600;
+  text-transform: capitalize;
+} 
+.content-inputs .input {
+  padding: .5rem;
+  border: 1px solid var(--color-light-border);
+  border-radius: .5rem;
+}
+.content-inputs .input:focus {
+  border-color: var(--color-tertiary);
+  outline: none;
+}
+html.dark {
+  --color-light-text: var(--color-dark-text);
+  --color-light-border: var(--color-dark-border);
+  /* --color-tertiary: #ff9800; */
+}

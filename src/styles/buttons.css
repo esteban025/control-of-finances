@@ -1,0 +1,121 @@
+.btn {
+  padding: 0.75rem 1.25rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  min-width: 157px;
+  width: 100%;
+  max-width: 300px;
+}
+.btn-gradient {
+  position: relative;
+  padding: 0.8rem 1.25rem;
+  border-radius: 9999px;
+  overflow: hidden;
+  display: flex;
+  width: max-content;
+  transition: all 0.3s;
+  background: linear-gradient(to bottom, var(--color-secondary), var(--color-tertiary));
+  height: 100%;
+  /* background-color: red; */
+  cursor: pointer;
+}
+.btn-gradient:hover {
+  scale: 1.05;
+  background: #0000002f;
+}
+.btn-gradient::before {
+  content: "";
+  width: 20%;
+  height: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  background: linear-gradient(0deg, var(--color-teal-500) 10%, transparent 50% ,var(--color-teal-500) 80%);
+  /* background-color: red; */
+  z-index: -5;
+  transition: all 2.5s;
+}
+.btn-gradient:hover::before {
+  animation: rotate-in 2.5s infinite both linear;
+}
+.btn-gradient .link-hidden {
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  gap: .5rem;
+}
+.btn-gradient .visible-gradient {
+  position: absolute;
+  inset: 2px;
+  border-radius: 9999px;
+  background: linear-gradient(to bottom, var(--color-secondary), var(--color-tertiary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  transition: all 0.3s;
+  font-weight: 600;
+  pointer-events: none;
+  color: var(--color-light-bg);
+}
+
+
+
+.btn-primary {
+  background: linear-gradient(to bottom, var(--color-secondary), var(--color-tertiary));
+  border: 1px solid var(--color-tertiary);
+  color: var(--color-dark-text);
+  transition: background-color 0.3s ease;
+}
+.btn-secondary {
+  border: 1px solid #00000050;
+  color: var(--color-light-text);
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: var(--color-tertiary);
+    color: var(--color-tertiary);
+  }
+}
+.btn-tertiary {
+  background-color: var(--color-gray-200);
+  border: 1px solid var(--color-gray-200);
+  color: var(--color-gray-800);
+  transition: background-color 0.3s ease;
+}
+
+html.dark {
+  .btn-primary {
+    background-color: var(--color-secondary);
+  }
+
+  .btn-secondary {
+    border-color: white;
+    color: var(--color-dark-text);
+
+    &:hover {
+      border-color: var(--color-tertiary);
+      color: var(--color-tertiary);
+    }
+  }
+}
+
+/* animaciones */
+@keyframes rotate-in {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
