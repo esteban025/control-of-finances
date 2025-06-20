@@ -1,0 +1,31 @@
+---
+const text = "Añadir Gasto";
+---
+
+<button class="btn-primary btn" id="open-modal-expense">
+  <svg
+    class="size-5"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+      d="M12 5l0 14"></path><path d="M5 12l14 0"></path></svg
+  >
+  <span class="">{text}</span>
+</button>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const $btnOpenModalExpense = document.getElementById("open-modal-expense");
+
+    $btnOpenModalExpense?.addEventListener("click", () => {
+      const $modalExpense = document.getElementById(
+        "add-expense-dialog",
+      ) as HTMLDialogElement;
+      $modalExpense.showModal();
+    });
+  });
+</script>

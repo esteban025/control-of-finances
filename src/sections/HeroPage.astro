@@ -1,6 +1,9 @@
 ---
-import UIBottom from "@/components/buttons/UIBottom.astro";
+import { getSession } from "auth-astro/server";
+import UiLink from "@/components/buttons/UiLink.astro";
 import Titles from "@/components/ui/Titles.astro";
+
+const session = await getSession(Astro.request);
 ---
 
 <section class="py-20" id="hero">
@@ -16,9 +19,17 @@ import Titles from "@/components/ui/Titles.astro";
           > Nunca pedimos tus datos bancarios ni de tarjetas.
         </p>
       </div>
-      <div class="buttons">
-        <UIBottom text="Comenzar" href="/login" />
-      </div>
+      {
+        !session ? (
+          <div class="buttons">
+            <UiLink text="Comenzar Ahora" href="/login" />
+          </div>
+        ) : (
+          <div class="buttons">
+            <UiLink text="Ir al Panel de Control" href="/dashboard" big />
+          </div>
+        )
+      }
     </div>
     <figure class="flex-1">
       <img

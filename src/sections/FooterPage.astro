@@ -1,6 +1,10 @@
 ---
-import UIBottom from "@/components/buttons/UIBottom.astro";
+import { getSession } from "auth-astro/server";
+
+import UiLink from "@/components/buttons/UiLink.astro";
 import navItems from "@/data/nav";
+
+const session = await getSession(Astro.request);
 
 interface Props {
   home?: boolean;
@@ -14,14 +18,26 @@ const { home = false }: Props = Astro.props;
   <section
     class="w-11/12 mx-auto flex flex-col md:flex-row items-center py-4 space-y-8"
   >
-    <div class="space-y-4">
-      <img src="/logo.webp" alt="Logo de Fitnancial" class="w-32" />
-      <p class="text-lg text-balance max-w-[600px]">
-        Gracias por visitar Fitnancial, esperamos que encuentres útil nuestra
-        aplicación.
-      </p>
-      {!home && <UIBottom text="Iniciar Sesión" href="/login" big />}
-    </div>
+    {
+      !session ? (
+        <div class="space-y-4">
+          <img src="/logo.webp" alt="Logo de Fitnancial" class="w-32" />
+          <p class="text-lg text-balance max-w-[600px]">
+            Bienvenido a Fitnancial, la aplicación que te ayuda a gestionar tus
+            finanzas personales de forma sencilla y segura.
+          </p>
+          <UiLink text="Iniciar Sesión" href="/login" big />
+        </div>
+      ) : (
+        <div class="space-y-4">
+          <img src="/logo.webp" alt="Logo de Fitnancial" class="w-32" />
+          <p class="text-lg text-balance max-w-[600px]">
+            Gracias por visitar Fitnancial, esperamos que encuentres útil
+            nuestra aplicación.
+          </p>
+        </div>
+      )
+    }
 
     <div class="flex gap-4 w-full md:justify-around">
       {

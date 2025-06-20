@@ -1,5 +1,5 @@
 ---
-import UIBottom from "../buttons/UIBottom.astro";
+import UiLink from "../buttons/UiLink.astro";
 import { ToggleTheme } from "../buttons/ThemeButtonDesktop";
 import Benefits from "@/assets/benefits.svg";
 import HowItWorks from "@/assets/howItWork.svg";
@@ -65,7 +65,7 @@ const { inHome }: Props = Astro.props;
     {
       !inHome && (
         <li class="w-full grid place-content-center md:hidden">
-          <UIBottom text="Iniciar sesión" href="/login" big />
+          <UiLink text="Iniciar sesión" href="/login" big />
         </li>
       )
     }

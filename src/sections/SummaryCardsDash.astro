@@ -1,0 +1,13 @@
+---
+import { SummaryTotalSpent } from "@/components/dashborad/SummaryTotalSpent";
+import { SummaryIncomes } from "@/components/dashborad/SummaryIncomes";
+import { SummaryBalance } from "@/components/dashborad/SummaryBalance";
+import { SummaryExpenses } from "@/components/dashborad/SummaryExpenses";
+---
+
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+  <SummaryIncomes client:load />
+  <SummaryTotalSpent client:load />
+  <SummaryBalance client:load />
+  <SummaryExpenses client:load />
+</div>

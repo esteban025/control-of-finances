@@ -1,8 +1,10 @@
 ---
-import UIBottom from "@/components/buttons/UIBottom.astro";
+import { getSession } from "auth-astro/server";
+import UiLink from "@/components/buttons/UiLink.astro";
 import Card from "@/components/ui/Card.astro";
 import Titles from "@/components/ui/Titles.astro";
 
+const session = await getSession(Astro.request);
 const advices = [
   {
     icon: "✔",
@@ -103,14 +105,28 @@ const famousQuotes = [
       }
     </article>
 
-    <div class="flex flex-col items-center justify-center">
-      <h3 class="text-2xl font-bold mb-4 text-center">
-        ¿Listo para tomar el control de tus finanzas?
-      </h3>
-      <p class="text-light-paragraph dark:text-dark-paragraph mb-6 text-center">
-        Empieza hoy mismo y da el primer paso hacia tu libertad financiera.
-      </p>
-      <UIBottom text="Iniciar sesión con Google" href="/login" big />
-    </div>
+    {
+      !session ? (
+        <div class="flex flex-col items-center justify-center">
+          <h3 class="text-2xl font-bold mb-4 text-center">
+            ¿Listo para tomar el control de tus finanzas?
+          </h3>
+          <p class="text-light-paragraph dark:text-dark-paragraph mb-6 text-center">
+            Empieza hoy mismo y da el primer paso hacia tu libertad financiera.
+          </p>
+          <UiLink text="Iniciar sesión con Google" href="/login" big />
+        </div>
+      ) : (
+        <div class="flex flex-col items-center justify-center">
+          <h3 class="text-2xl font-bold mb-4 text-center">
+            ¡Ya estás en el camino hacia una mejor salud financiera!
+          </h3>
+          <p class="text-light-paragraph dark:text-dark-paragraph mb-6 text-center">
+            Sigue aplicando estos consejos y aprovecha al máximo nuestra
+            plataforma.
+          </p>
+        </div>
+      )
+    }
   </div>
 </section>

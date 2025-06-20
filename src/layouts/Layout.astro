@@ -7,8 +7,9 @@ import { ClientRouter } from "astro:transitions";
 
 interface Props {
 	inHome?: boolean;
+	inDashboard?: boolean;
 }
-const { inHome = true }: Props = Astro.props;
+const { inHome = true, inDashboard = false }: Props = Astro.props;
 ---
 
 <!doctype html>
@@ -25,7 +26,11 @@ const { inHome = true }: Props = Astro.props;
 		class="font-inter font-normal w-full bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text text-base max-w-[1366px] mx-auto overflow-x-hidden transition-colors duration-300 relative"
 	>
 		<div class="min-h-dvh grid grid-rows-[auto_1fr_auto]">
-			<HeaderPage home={inHome} transition:name="header-pages" />
+			<HeaderPage
+				home={inHome}
+				transition:name="header-pages"
+				dashboard={inDashboard}
+			/>
 			<!-- <NavMobile /> -->
 			<slot />
 			<ScrollTo />

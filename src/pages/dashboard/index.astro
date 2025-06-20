@@ -1,0 +1,93 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Titles from "@/components/ui/Titles.astro";
+import OpenModalExpense from "@/components/buttons/OpenModalExpense.astro";
+import { WarningMessage } from "@/components/dashborad/WarningMensagge";
+import { MonthNavigation } from "@/components/dashborad/MonthNavigation";
+import OpenModalIncome from "@/components/buttons/OpenModalIncome.astro";
+import SummaryCardsDash from "@/sections/SummaryCardsDash.astro";
+import { ModalExpense } from "@/components/dashborad/ModalExpense";
+import { NavDetails } from "@/components/dashborad/NavDetails";
+import { ExpensesByCategoryCard } from "@/components/dashborad/ExpensesByCategoryCard";
+import { MonthlyBudgetsCard } from "@/components/dashborad/MonthlyBudgetsCard";
+import { SubcategoryGuideCard } from "@/components/dashborad/SubcategoryGuideCard";
+import { AnalysisCard } from "@/components/dashborad/AnalysisCard";
+import { ExpensesCard } from "@/components/dashborad/ExpensesCard";
+import { ModalIncomesConfig } from "@/components/dashborad/ModalConfigIncomes";
+import IndexLogin from "../login/index.astro";
+
+import { getSession } from "auth-astro/server";
+const session = await getSession(Astro.request);
+---
+
+{
+  !session ? (
+    <IndexLogin />
+  ) : (
+    <Layout inDashboard>
+      <ModalExpense client:load />
+      <ModalIncomesConfig client:load />
+      <div class="dashboard w-11/12 mx-auto overflow-x-hidden">
+        <div class="w-full flex items-center gap-4 py-6">
+          <img
+            src={session?.user?.image}
+            alt={`Avatar de ${session?.user?.name}`}
+            class:list={["w-10 h-10 rounded-full object-cover"]}
+          />
+          <p class="text-pretty text-light-paragraph dark:text-dark-paragraph text-sm">
+            Bienvenido, {session?.user?.name?.split(" ")[0]}
+          </p>
+        </div>
+        <div class="flex flex-col gap-6">
+          <header class="flex flex-col justify-center gap-2 md:flex-row md:items-start">
+            <div class="w-full">
+              <Titles text="Panel de control" subtitle />
+              <p class="text-balance text-light-paragraph dark:text-dark-paragraph pt-2">
+                Gestiona y controla tus finanzas de manera eficiente. Aquí
+                puedes ver un resumen de tus gastos, ingresos y presupuestos.
+              </p>
+            </div>
+            <div class="flex flex-col items-center md:flex-row gap-2 w-full">
+              <OpenModalIncome />
+              <OpenModalExpense />
+            </div>
+          </header>
+          <WarningMessage client:load />
+          <MonthNavigation client:load />
+          <SummaryCardsDash />
+
+          <NavDetails client:load />
+
+          <div class="container-cards-details w-full flex [scroll-snap-type:x_mandatory] overflow-hidden gap-4">
+            <div
+              id="resumen"
+              class="w-full grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4 flex-shrink-0 [scroll-snap-align:center]"
+            >
+              <ExpensesByCategoryCard client:load />
+              <ExpensesByCategoryCard client:load />
+            </div>
+            <div
+              id="análisis"
+              class="w-full flex-shrink-0 [scroll-snap-align:center]"
+            >
+              <AnalysisCard client:load />
+            </div>
+            <div
+              id="presupuestos"
+              class="w-full grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4 flex-shrink-0 [scroll-snap-align:center]"
+            >
+              <MonthlyBudgetsCard client:load />
+              <SubcategoryGuideCard client:load />
+            </div>
+            <div
+              id="gastos"
+              class="w-full flex-shrink-0 [scroll-snap-align:center]"
+            >
+              <ExpensesCard client:load />
+            </div>
+          </div>
+        </div>
+      </div>
+    </Layout>
+  )
+}

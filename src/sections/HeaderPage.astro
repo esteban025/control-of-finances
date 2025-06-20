@@ -1,11 +1,14 @@
 ---
+import { getSession } from "auth-astro/server";
 import OpenNavButton from "@/components/buttons/OpenNavButton.astro";
-import UIBottom from "@/components/buttons/UIBottom.astro";
+import UiLink from "@/components/buttons/UiLink.astro";
 import NavMobile from "@/components/home/NavMobile.astro";
 interface Props {
   home?: boolean;
+  dashboard?: boolean;
 }
-const { home = false }: Props = Astro.props;
+const { home = false, dashboard = false }: Props = Astro.props;
+const session = await getSession(Astro.request);
 ---
 
 <header
@@ -17,10 +20,15 @@ const { home = false }: Props = Astro.props;
       <img src="/logo.webp" alt="Logo de Fitnancial" class="w-full" />
     </a>
     <NavMobile inHome={home} />
+
     {
-      !home && (
+      session ? (
         <div class="order-2 md:order-3">
-          <UIBottom text="Iniciar sesión" href="/login" />
+          <UiLink text="Cerrar Sesión" href="/" id="logout" />
+        </div>
+      ) : (
+        <div class="order-2 md:order-3">
+          <UiLink text="Iniciar sesión" href="/login" />
         </div>
       )
     }
@@ -55,9 +63,11 @@ const { home = false }: Props = Astro.props;
 </header>
 
 <script>
+  import { signOut } from "auth-astro/client";
   document.addEventListener("astro:page-load", () => {
     const sections = document.querySelectorAll(".section");
     const navItems = document.querySelectorAll(".btn-nav");
+    const $btnLogout = document.getElementById("logout");
 
     const callback = (entries: any[]) => {
       entries.forEach((entry) => {
@@ -93,5 +103,11 @@ const { home = false }: Props = Astro.props;
         });
       }
     };
+
+    if ($btnLogout) {
+      $btnLogout.onclick = () => {
+        signOut();
+      };
+    }
   });
 </script>
