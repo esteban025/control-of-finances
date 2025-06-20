@@ -1,0 +1,22 @@
+export const subcategoriesByCategory = {
+  Alimentación: ["Supermercado", "Restaurantes", "Comida rápida", "Café/Snacks", "Delivery", "Mercado/Feria"],
+  Transporte: ["Gasolina", "Uber/Taxi", "Mantenimiento vehículo", "Estacionamiento", "Viajes", "Seguro vehículo"],
+  Entretenimiento: ["Cine", "Conciertos", "Bares/Discotecas", "Videojuegos", "Netflix", "Spotify", "Gimnasio"],
+  Salud: ["Consultas médicas", "Medicamentos", "Farmacia", "Emergencias médicas", "Seguro médico"],
+  Servicios: ["Alquiler/Hipoteca", "Electricidad", "Agua", "Gas", "Internet", "Teléfono", "Seguro hogar"],
+  Compras: ["Ropa", "Electrónicos", "Hogar/Decoración", "Regalos", "Cosméticos", "Deportes"],
+  "Cuidado Personal": [
+    "Peluquería",
+    "Barbería",
+    "Manicure/Pedicure",
+    "Spa/Masajes",
+    "Productos de belleza",
+    "Perfumes",
+    "Tratamientos faciales",
+    "Depilación",
+    "Dentista estético",
+    "Productos de higiene",
+  ],
+  Educación: ["Colegiatura", "Cursos online", "Libros/Material", "Capacitaciones", "Seminarios"],
+  Otros: ["Donaciones", "Ahorros automáticos", "Inversiones regulares", "Imprevistos", "Multas", "Gastos varios"],
+}
